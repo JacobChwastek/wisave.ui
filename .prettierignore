@@ -1,19 +1,23 @@
+# Dependencies
+node_modules
+
 # Build outputs
 dist
 coverage
 .angular
-
-# Dependencies
-node_modules
 
 # Lock files
 package-lock.json
 pnpm-lock.yaml
 yarn.lock
 
-# Minified files
-*.min.js
-*.min.css
+# IDE
+.vscode
+.idea
+.fleet
+
+# Git hooks
+.husky
 
 # Binary/font files
 *.ico
@@ -21,20 +25,6 @@ yarn.lock
 *.woff2
 *.ttf
 *.eot
-*.png
-*.jpg
-*.jpeg
-*.gif
-*.svg
-
-# IDE
-.vscode
-.idea
-*.iml
-.fleet
-
-# Git hooks
-.husky
 
 # Environment
 .env
