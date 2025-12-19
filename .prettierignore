@@ -1,0 +1,46 @@
+# Build outputs
+dist
+coverage
+.angular
+
+# Dependencies
+node_modules
+
+# Lock files
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+
+# Minified files
+*.min.js
+*.min.css
+
+# Binary/font files
+*.ico
+*.woff
+*.woff2
+*.ttf
+*.eot
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.svg
+
+# IDE
+.vscode
+.idea
+*.iml
+.fleet
+
+# Git hooks
+.husky
+
+# Environment
+.env
+.env.*
+
+# Misc
+*.log
+tmp
+temp
