@@ -1,5 +1,5 @@
 {
-  "printWidth": 100,
+  "printWidth": 200,
   "singleQuote": true,
   "semi": true,
   "tabWidth": 2,
@@ -9,11 +9,7 @@
   "arrowParens": "always",
   "endOfLine": "lf",
 
-  "plugins": [
-    "@ianvs/prettier-plugin-sort-imports",
-    "prettier-plugin-organize-attributes",
-    "prettier-plugin-tailwindcss"
-  ],
+  "plugins": ["@ianvs/prettier-plugin-sort-imports", "prettier-plugin-organize-attributes", "prettier-plugin-tailwindcss"],
 
   "importOrder": [
     "<BUILTIN_MODULES>",

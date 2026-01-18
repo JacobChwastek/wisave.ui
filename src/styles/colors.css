@@ -1,0 +1,60 @@
+@theme {
+  --color-primary-50: hsl(54, 100%, 97%);
+  --color-primary-100: hsl(54, 100%, 94%);
+  --color-primary-200: hsl(54, 100%, 86%);
+  --color-primary-300: hsl(54, 100%, 74%);
+  --color-primary-400: hsl(54, 100%, 62%);
+  --color-primary-500: hsl(54, 100%, 50%);
+  --color-primary-600: hsl(54, 100%, 40%);
+  --color-primary-700: hsl(54, 100%, 32%);
+  --color-primary-800: hsl(54, 100%, 24%);
+  --color-primary-900: hsl(54, 100%, 17%);
+  --color-primary-950: hsl(54, 100%, 10%);
+
+  --color-dark-primary-50: hsl(202, 50%, 95%);
+  --color-dark-primary-100: hsl(202, 55%, 85%);
+  --color-dark-primary-200: hsl(202, 60%, 72%);
+  --color-dark-primary-300: hsl(202, 65%, 58%);
+  --color-dark-primary-400: hsl(202, 70%, 45%);
+  --color-dark-primary-500: hsl(202, 75%, 35%);
+  --color-dark-primary-600: hsl(202, 80%, 26%);
+  --color-dark-primary-700: hsl(202, 85%, 18%);
+  --color-dark-primary-800: hsl(202, 90%, 12%);
+  --color-dark-primary-900: hsl(202, 95%, 8%);
+  --color-dark-primary-950: hsl(202, 100%, 4%);
+
+  --color-secondary-50: hsl(225, 4%, 97%);
+  --color-secondary-100: hsl(225, 4%, 92%);
+  --color-secondary-200: hsl(225, 4%, 82%);
+  --color-secondary-300: hsl(225, 4%, 70%);
+  --color-secondary-400: hsl(225, 4%, 58%);
+  --color-secondary-500: hsl(225, 4%, 46%);
+  --color-secondary-600: hsl(225, 4%, 36%);
+  --color-secondary-700: hsl(225, 4%, 28%);
+  --color-secondary-800: hsl(225, 4%, 21%);
+  --color-secondary-900: hsl(225, 4%, 14%);
+  --color-secondary-950: hsl(225, 4%, 8%);
+
+  --color-accent-50: hsl(35, 74%, 97%);
+  --color-accent-100: hsl(35, 74%, 92%);
+  --color-accent-200: hsl(35, 74%, 82%);
+  --color-accent-300: hsl(35, 74%, 70%);
+  --color-accent-400: hsl(35, 74%, 58%);
+  --color-accent-500: hsl(35, 74%, 49%);
+  --color-accent-600: hsl(35, 74%, 40%);
+  --color-accent-700: hsl(35, 74%, 32%);
+  --color-accent-800: hsl(35, 74%, 24%);
+  --color-accent-900: hsl(35, 74%, 16%);
+  --color-accent-950: hsl(35, 74%, 10%);
+
+  --color-text-50: hsl(54, 30%, 95%);
+  --color-text-100: hsl(54, 25%, 85%);
+  --color-text-200: hsl(54, 20%, 70%);
+  --color-text-300: hsl(54, 15%, 55%);
+  --color-text-400: hsl(54, 12%, 38%);
+  --color-text-500: hsl(54, 10%, 21%); /* body text */
+  --color-text-600: hsl(54, 10%, 16%);
+  --color-text-700: hsl(54, 12%, 12%);
+  --color-text-800: hsl(54, 15%, 8%);
+  --color-text-900: hsl(54, 18%, 5%);
+}

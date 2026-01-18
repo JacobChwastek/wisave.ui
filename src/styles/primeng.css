@@ -1,0 +1,20 @@
+/** Button **/
+
+.p-button-outlined {
+  &:hover {
+    color: var(--color-primary-200);
+    background-color: var(--color-secondary-800);
+  }
+
+  .dark & {
+    color: var(--color-dark-primary-100);
+    border-color: var(--color-dark-primary-100);
+
+    &:hover {
+      color: var(--color-text-200);
+      border-color: var(--color-text-200);
+
+      background-color: var(--color-dark-primary-800);
+    }
+  }
+}
