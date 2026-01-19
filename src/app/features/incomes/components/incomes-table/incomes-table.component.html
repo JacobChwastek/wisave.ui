@@ -1,0 +1,129 @@
+<div class="w-full">
+  <p-table
+    #dt1
+    [value]="data()"
+    [rows]="10"
+    [rowsPerPageOptions]="[10, 25, 50]"
+    [loading]="isLoading()"
+    [paginator]="true"
+    [globalFilterFields]="['description', 'category']"
+    [scrollable]="true"
+    [tableStyle]="{ minWidth: '100%' }"
+    scrollHeight="flex"
+    dataKey="id"
+    editMode="row"
+    showGridlines>
+    <ng-template #caption>
+      <div class="flex">
+        <p-iconfield iconPosition="left">
+          <p-inputicon>
+            <i class="pi pi-search"></i>
+          </p-inputicon>
+          <input (input)="dt1.filterGlobal($event.target.value, 'contains')" pInputText type="text" placeholder="Search keyword" />
+        </p-iconfield>
+        <p-button (click)="addNewIncome()" class="ml-auto" label="Add Income" icon="pi pi-plus" severity="success" />
+        <p-button [outlined]="true" (click)="clear(dt1)" class="ml-2" label="Clear" icon="pi pi-filter-slash" />
+      </div>
+    </ng-template>
+    <ng-template #header>
+      <tr>
+        <th style="min-width: 10rem">
+          <div class="flex items-center justify-between">
+            Date
+            <p-columnFilter type="date" field="date" display="menu" />
+          </div>
+        </th>
+        <th style="min-width: 15rem">
+          <div class="flex items-center justify-between">
+            Description
+            <p-columnFilter type="text" field="description" display="menu" />
+          </div>
+        </th>
+        <th style="min-width: 12rem">
+          <div class="flex items-center justify-between">Category</div>
+        </th>
+        <th style="min-width: 10rem">
+          <div class="flex items-center justify-between">
+            Amount
+            <p-columnFilter type="numeric" field="amount.amount" display="menu" />
+          </div>
+        </th>
+        <th style="width: 8rem">
+          <div class="flex items-center justify-between">
+            Recurring
+            <p-columnFilter type="boolean" field="recurring" display="menu" />
+          </div>
+        </th>
+        <th style="width: 10rem"></th>
+      </tr>
+    </ng-template>
+    <ng-template #body let-income let-editing="editing" let-ri="rowIndex">
+      <tr [pEditableRow]="income">
+        <td>
+          <p-cellEditor>
+            <ng-template #input>
+              <p-datepicker [(ngModel)]="income.date" dateFormat="dd/mm/yy" />
+            </ng-template>
+            <ng-template #output>
+              {{ income.date | date: 'dd/MM/yyyy' }}
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td>
+          <p-cellEditor>
+            <ng-template #input>
+              <input [(ngModel)]="income.description" pInputText type="text" />
+            </ng-template>
+            <ng-template #output>
+              {{ income.description }}
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td>
+          <div class="flex flex-wrap gap-2">
+            @for (cat of income.category; track cat) {
+              <p-chip [label]="cat" />
+            }
+          </div>
+        </td>
+        <td>
+          <p-cellEditor>
+            <ng-template #input>
+              <input [(ngModel)]="income.amount.amount" pInputText type="number" />
+            </ng-template>
+            <ng-template #output>
+              {{ income.amount.amount | currency: income.amount.currency }}
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td class="text-center">
+          <i
+            [ngClass]="{
+              'pi-check-circle text-green-500': income.recurring,
+              'pi-times-circle text-red-500': !income.recurring,
+            }"
+            class="pi"></i>
+        </td>
+        <td>
+          <div class="flex items-center justify-center gap-2">
+            @if (!editing && !isNewIncome(income)) {
+              <button (click)="onRowEditInit(income)" pButton pRipple type="button" pInitEditableRow icon="pi pi-pencil" text rounded severity="secondary"></button>
+            } @else {
+              <button (click)="onRowEditSave(income)" pButton pRipple type="button" pSaveEditableRow icon="pi pi-check" text rounded severity="success"></button>
+              @if (isNewIncome(income)) {
+                <button (click)="onRowDelete(income, ri)" pButton pRipple type="button" icon="pi pi-trash" text rounded severity="danger"></button>
+              } @else {
+                <button (click)="onRowEditCancel(income, ri)" pButton pRipple type="button" pCancelEditableRow icon="pi pi-times" text rounded severity="danger"></button>
+              }
+            }
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template #emptymessage>
+      <tr>
+        <td colspan="6">No incomes found.</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

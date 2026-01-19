@@ -51,7 +51,7 @@
       "files": "*.html",
       "options": {
         "parser": "angular",
-        "singleAttributePerLine": true
+        "htmlWhitespaceSensitivity": "ignore"
       }
     }
   ]

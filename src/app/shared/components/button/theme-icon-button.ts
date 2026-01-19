@@ -6,7 +6,6 @@ import { ThemeService } from '../../../core/services/ThemeService';
 
 @Component({
   selector: 'theme-icon-button',
-  standalone: true,
   imports: [ButtonModule],
   template: ` <p-button [icon]="themeService.isDarkMode() ? 'pi pi-sun' : 'pi pi-moon'" (click)="themeService.toggleTheme()" variant="outlined" severity="secondary" /> `,
   styles: [

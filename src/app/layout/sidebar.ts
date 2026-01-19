@@ -7,7 +7,6 @@ import { ThemeIconButtonComponent } from '../shared/components/button';
 
 @Component({
   selector: 'app-sidebar',
-  standalone: true,
   imports: [RouterLink, RouterLinkActive, Button, ThemeIconButtonComponent],
   template: `
     <aside class="bg-secondary-700 bg dark:bg-dark-primary-900 flex h-screen w-60 flex-col gap-8 px-2 py-4">
@@ -22,8 +21,8 @@ import { ThemeIconButtonComponent } from '../shared/components/button';
               <a
                 [routerLink]="item.route"
                 [routerLinkActiveOptions]="{ exact: item.exact }"
-                class="hover:bg-secondary-800 dark:hover:bg-dark-primary-800 text-text-100 hover:text-text-200 flex items-center gap-3 rounded-lg px-4 py-2.5 dark:text-slate-300"
-                routerLinkActive="bg-slate-800">
+                class="text-text-100 hover:bg-secondary-800 hover:text-text-200 [&.active]:text-text-200 [&.active]:hover:bg-secondary-900 dark:hover:bg-dark-primary-800 dark:[&.active]:hover:bg-dark-primary-700 flex cursor-pointer items-center gap-3 rounded-lg px-4 py-2.5 dark:text-slate-300"
+                routerLinkActive="active bg-secondary-900 dark:bg-dark-primary-700">
                 <i [class]="item.icon + ' text-lg'"></i>
                 <span class="font-medium">{{ item.label }}</span>
               </a>

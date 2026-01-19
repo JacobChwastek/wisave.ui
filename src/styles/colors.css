@@ -23,6 +23,19 @@
   --color-dark-primary-900: hsl(202, 95%, 8%);
   --color-dark-primary-950: hsl(202, 100%, 4%);
 
+  /* Secondary - Neutral slate (desaturated, slightly shifted) */
+  --color-dark-secondary-50: hsl(210, 20%, 95%);
+  --color-dark-secondary-100: hsl(210, 18%, 82%);
+  --color-dark-secondary-200: hsl(210, 16%, 68%);
+  --color-dark-secondary-300: hsl(210, 14%, 55%);
+  --color-dark-secondary-400: hsl(210, 12%, 42%);
+  --color-dark-secondary-500: hsl(210, 14%, 32%);
+  --color-dark-secondary-600: hsl(210, 16%, 24%);
+  --color-dark-secondary-700: hsl(210, 18%, 17%);
+  --color-dark-secondary-800: hsl(210, 20%, 11%);
+  --color-dark-secondary-900: hsl(210, 22%, 7%);
+  --color-dark-secondary-950: hsl(210, 25%, 4%);
+
   --color-secondary-50: hsl(225, 4%, 97%);
   --color-secondary-100: hsl(225, 4%, 92%);
   --color-secondary-200: hsl(225, 4%, 82%);

@@ -1,7 +1,9 @@
-import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZonelessChangeDetection } from '@angular/core';
+import { ApplicationConfig, isDevMode, provideBrowserGlobalErrorListeners, provideZonelessChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
 
 import { providePrimeNG } from 'primeng/config';
+
+import { provideStoreDevtools } from '@ngrx/store-devtools';
 
 import WiSaveTheme from '../theme';
 import { routes } from './app.routes';
@@ -23,5 +25,6 @@ export const appConfig: ApplicationConfig = {
         },
       },
     }),
+    provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
   ],
 };

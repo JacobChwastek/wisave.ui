@@ -13,6 +13,7 @@
   "private": true,
   "packageManager": "npm@11.6.2",
   "dependencies": {
+    "@angular-architects/ngrx-toolkit": "^20.6.0",
     "@angular/common": "^21.1.0",
     "@angular/compiler": "^21.1.0",
     "@angular/core": "^21.1.0",
@@ -27,13 +28,17 @@
     "rxjs": "~7.8.0",
     "tailwindcss": "^4.1.18",
     "tailwindcss-primeui": "^0.6.1",
-    "tslib": "^2.3.0"
+    "tslib": "^2.3.0",
+    "uuid": "^13.0.0"
   },
   "devDependencies": {
     "@angular/build": "^21.1.0",
     "@angular/cli": "^21.1.0",
     "@angular/compiler-cli": "^21.1.0",
     "@ianvs/prettier-plugin-sort-imports": "^4.7.0",
+    "@ngrx/signals": "^21.0.1",
+    "@ngrx/store": "^21.0.1",
+    "@ngrx/store-devtools": "^21.0.1",
     "jsdom": "^27.1.0",
     "prettier": "^3.7.4",
     "prettier-plugin-organize-attributes": "^1.0.0",

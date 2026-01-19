@@ -16,6 +16,124 @@ const WiSaveTheme = definePreset(Aura, {
         },
       },
     },
+    datatable: {
+      colorScheme: {
+        dark: {
+          header: {
+            background: 'var(--color-dark-primary-900)',
+            borderColor: 'var(--color-dark-primary-600)',
+            color: 'var(--color-dark-secondary-50)',
+            padding: '1rem',
+          },
+          headerCell: {
+            background: 'var(--color-dark-primary-900)',
+            hoverBackground: 'var(--color-dark-primary-700)',
+            selectedBackground: 'var(--color-dark-primary-700)',
+            borderColor: 'var(--color-dark-primary-600)',
+            color: 'var(--color-dark-secondary-50)',
+            hoverColor: 'var(--color-dark-secondary-50)',
+            selectedColor: 'var(--color-accent-400)',
+            padding: '0.75rem 1rem',
+            focusRing: {
+              width: '2px',
+              style: 'solid',
+              color: 'var(--color-accent-500)',
+              offset: '-2px',
+            },
+          },
+          columnTitle: {
+            fontWeight: '600',
+          },
+          row: {
+            background: 'var(--color-dark-primary-800)',
+            hoverBackground: 'var(--color-dark-primary-700)',
+            selectedBackground: 'hsla(35, 74%, 49%, 0.15)',
+            color: 'var(--color-dark-secondary-100)',
+            hoverColor: 'var(--color-dark-secondary-50)',
+            selectedColor: 'var(--color-dark-secondary-50)',
+            stripedBackground: 'var(--color-dark-primary-900)',
+            focusRing: {
+              width: '2px',
+              style: 'solid',
+              color: 'var(--color-accent-500)',
+              offset: '-2px',
+            },
+          },
+          bodyCell: {
+            borderColor: 'var(--color-dark-primary-700)',
+            padding: '0.75rem 1rem',
+            selectedBorderColor: 'var(--color-accent-600)',
+          },
+          footerCell: {
+            background: 'var(--color-dark-primary-900)',
+            borderColor: 'var(--color-dark-primary-600)',
+            color: 'var(--color-dark-secondary-100)',
+            padding: '0.75rem 1rem',
+          },
+          columnFooter: {
+            fontWeight: '600',
+          },
+          footer: {
+            background: 'var(--color-dark-primary-900)',
+            borderColor: 'var(--color-dark-primary-600)',
+            color: 'var(--color-dark-secondary-100)',
+            padding: '1rem',
+          },
+          rowToggleButton: {
+            hoverBackground: 'var(--color-dark-primary-700)',
+            selectedHoverBackground: 'var(--color-dark-primary-600)',
+            color: 'var(--color-dark-secondary-200)',
+            hoverColor: 'var(--color-dark-secondary-50)',
+            selectedHoverColor: 'var(--color-accent-400)',
+            size: '2rem',
+            borderRadius: '50%',
+          },
+          sortIcon: {
+            color: 'var(--color-dark-secondary-300)',
+            hoverColor: 'var(--color-dark-secondary-100)',
+            size: '0.875rem',
+          },
+          loadingIcon: {
+            size: '2rem',
+          },
+          filter: {
+            inlineGap: '0.5rem',
+            overlaySelect: {
+              background: 'var(--color-dark-primary-800)',
+              borderColor: 'var(--color-dark-primary-600)',
+              color: 'var(--color-dark-secondary-100)',
+            },
+            rule: {
+              borderColor: 'var(--color-dark-primary-600)',
+            },
+            constraintList: {
+              padding: '0.5rem',
+              gap: '0.25rem',
+            },
+            constraint: {
+              focusBackground: 'var(--color-dark-primary-700)',
+              selectedBackground: 'var(--color-accent-500)',
+              selectedFocusBackground: 'var(--color-accent-600)',
+              color: 'var(--color-dark-secondary-100)',
+              focusColor: 'var(--color-dark-secondary-50)',
+              selectedColor: 'var(--color-dark-primary-900)',
+              selectedFocusColor: 'var(--color-dark-primary-900)',
+              separator: {
+                borderColor: 'var(--color-dark-primary-600)',
+              },
+              padding: '0.5rem 0.75rem',
+              borderRadius: '4px',
+            },
+          },
+          paginatorTop: {
+            borderColor: 'var(--color-dark-primary-600)',
+          },
+          paginatorBottom: {
+            borderColor: 'var(--color-dark-primary-600)',
+          },
+        },
+      },
+    },
   },
   semantic: {
     primary: {
