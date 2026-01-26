@@ -3,13 +3,13 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 
 import { Button } from 'primeng/button';
 
-import { ThemeIconButtonComponent } from '../shared/components/button';
+import { ThemeIconButtonComponent } from '@shared/components/button';
 
 @Component({
   selector: 'app-sidebar',
   imports: [RouterLink, RouterLinkActive, Button, ThemeIconButtonComponent],
   template: `
-    <aside class="bg-secondary-700 bg dark:bg-dark-primary-900 flex h-screen w-60 flex-col gap-8 px-2 py-4">
+    <aside class="bg-secondary-700 bg dark:bg-dark-primary-900 flex h-screen w-50 flex-col gap-8 px-2 py-4">
       <div class="flex items-center justify-center gap-4 p-2">
         <img class="h-24 w-auto" loading="eager" src="/logo2.png" alt="WiSave" />
       </div>
