@@ -11,30 +11,33 @@
   --color-primary-900: hsl(54, 100%, 17%);
   --color-primary-950: hsl(54, 100%, 10%);
 
-  --color-dark-primary-50: hsl(202, 50%, 95%);
-  --color-dark-primary-100: hsl(202, 55%, 85%);
-  --color-dark-primary-200: hsl(202, 60%, 72%);
-  --color-dark-primary-300: hsl(202, 65%, 58%);
-  --color-dark-primary-400: hsl(202, 70%, 45%);
-  --color-dark-primary-500: hsl(202, 75%, 35%);
-  --color-dark-primary-600: hsl(202, 80%, 26%);
-  --color-dark-primary-700: hsl(202, 85%, 18%);
-  --color-dark-primary-800: hsl(202, 90%, 12%);
-  --color-dark-primary-900: hsl(202, 95%, 8%);
-  --color-dark-primary-950: hsl(202, 100%, 4%);
+  /* Dark Primary - Deep blue-slate for backgrounds */
+  --color-dark-primary-50: hsl(215, 25%, 95%);
+  --color-dark-primary-100: hsl(215, 25%, 85%);
+  --color-dark-primary-200: hsl(215, 25%, 72%);
+  --color-dark-primary-300: hsl(215, 25%, 58%);
+  --color-dark-primary-400: hsl(215, 30%, 45%);
+  --color-dark-primary-500: hsl(215, 35%, 35%);
+  --color-dark-primary-600: hsl(215, 40%, 26%);
+  --color-dark-primary-700: hsl(217, 45%, 18%);
+  --color-dark-primary-750: hsl(218, 50%, 15%);
+  --color-dark-primary-800: hsl(220, 55%, 12%);
+  --color-dark-primary-850: hsl(222, 60%, 10%);
+  --color-dark-primary-900: hsl(224, 65%, 7%);
+  --color-dark-primary-950: hsl(226, 70%, 4%);
 
-  /* Secondary - Neutral slate (desaturated, slightly shifted) */
-  --color-dark-secondary-50: hsl(210, 20%, 95%);
-  --color-dark-secondary-100: hsl(210, 18%, 82%);
-  --color-dark-secondary-200: hsl(210, 16%, 68%);
-  --color-dark-secondary-300: hsl(210, 14%, 55%);
-  --color-dark-secondary-400: hsl(210, 12%, 42%);
-  --color-dark-secondary-500: hsl(210, 14%, 32%);
-  --color-dark-secondary-600: hsl(210, 16%, 24%);
-  --color-dark-secondary-700: hsl(210, 18%, 17%);
-  --color-dark-secondary-800: hsl(210, 20%, 11%);
-  --color-dark-secondary-900: hsl(210, 22%, 7%);
-  --color-dark-secondary-950: hsl(210, 25%, 4%);
+  /* Dark Secondary - Text and UI elements (higher contrast for readability) */
+  --color-dark-secondary-50: hsl(210, 15%, 98%);
+  --color-dark-secondary-100: hsl(210, 15%, 90%);
+  --color-dark-secondary-200: hsl(210, 14%, 78%);
+  --color-dark-secondary-300: hsl(210, 12%, 65%);
+  --color-dark-secondary-400: hsl(210, 10%, 50%);
+  --color-dark-secondary-500: hsl(210, 12%, 38%);
+  --color-dark-secondary-600: hsl(210, 14%, 28%);
+  --color-dark-secondary-700: hsl(210, 16%, 20%);
+  --color-dark-secondary-800: hsl(210, 18%, 14%);
+  --color-dark-secondary-900: hsl(210, 20%, 9%);
+  --color-dark-secondary-950: hsl(210, 22%, 5%);
 
   --color-secondary-50: hsl(225, 4%, 97%);
   --color-secondary-100: hsl(225, 4%, 92%);
@@ -48,17 +51,18 @@
   --color-secondary-900: hsl(225, 4%, 14%);
   --color-secondary-950: hsl(225, 4%, 8%);
 
-  --color-accent-50: hsl(35, 74%, 97%);
-  --color-accent-100: hsl(35, 74%, 92%);
-  --color-accent-200: hsl(35, 74%, 82%);
-  --color-accent-300: hsl(35, 74%, 70%);
-  --color-accent-400: hsl(35, 74%, 58%);
-  --color-accent-500: hsl(35, 74%, 49%);
-  --color-accent-600: hsl(35, 74%, 40%);
-  --color-accent-700: hsl(35, 74%, 32%);
-  --color-accent-800: hsl(35, 74%, 24%);
-  --color-accent-900: hsl(35, 74%, 16%);
-  --color-accent-950: hsl(35, 74%, 10%);
+  /* Accent - Warm amber/gold (complementary to dark blue) */
+  --color-accent-50: hsl(45, 95%, 97%);
+  --color-accent-100: hsl(45, 92%, 90%);
+  --color-accent-200: hsl(43, 90%, 78%);
+  --color-accent-300: hsl(40, 88%, 65%);
+  --color-accent-400: hsl(38, 92%, 55%);
+  --color-accent-500: hsl(36, 95%, 48%);
+  --color-accent-600: hsl(32, 95%, 42%);
+  --color-accent-700: hsl(28, 90%, 35%);
+  --color-accent-800: hsl(24, 85%, 28%);
+  --color-accent-900: hsl(20, 80%, 20%);
+  --color-accent-950: hsl(18, 75%, 12%);
 
   --color-text-50: hsl(54, 30%, 95%);
   --color-text-100: hsl(54, 25%, 85%);
