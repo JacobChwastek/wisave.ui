@@ -1688,6 +1688,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@ngrx/operators@npm:^21.0.1":
+  version: 21.0.1
+  resolution: "@ngrx/operators@npm:21.0.1"
+  dependencies:
+    tslib: "npm:^2.3.0"
+  peerDependencies:
+    rxjs: ^6.5.3 || ^7.4.0
+  checksum: 10c0/65c8516d89f15fe116029b8a5b00475e70d06e225cdf825d821ebb0a3b108faf807ed702681e2fca26de80a31e77aab7c57cea9f12f84b8f0620a61276b1a20b
+  languageName: node
+  linkType: hard
+
 "@ngrx/signals@npm:^21.0.1":
   version: 21.0.1
   resolution: "@ngrx/signals@npm:21.0.1"
@@ -1999,7 +2010,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@primeuix/styles@npm:^2.0.2":
+"@primeuix/styles@npm:^2.0.3":
   version: 2.0.3
   resolution: "@primeuix/styles@npm:2.0.3"
   dependencies:
@@ -2008,7 +2019,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@primeuix/themes@npm:^2.0.2":
+"@primeuix/themes@npm:^2.0.3":
   version: 2.0.3
   resolution: "@primeuix/themes@npm:2.0.3"
   dependencies:
@@ -5056,13 +5067,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"primeng@npm:^21.0.2":
-  version: 21.0.4
-  resolution: "primeng@npm:21.0.4"
+"primeng@npm:^21.1.1":
+  version: 21.1.1
+  resolution: "primeng@npm:21.1.1"
   dependencies:
     "@primeuix/motion": "npm:^0.0.10"
     "@primeuix/styled": "npm:^0.7.4"
-    "@primeuix/styles": "npm:^2.0.2"
+    "@primeuix/styles": "npm:^2.0.3"
     "@primeuix/utils": "npm:^0.6.3"
     tslib: "npm:^2.3.0"
   peerDependencies:
@@ -5073,7 +5084,7 @@ __metadata:
     "@angular/platform-browser": ^21.0.0
     "@angular/router": ^21.0.0
     rxjs: ^6.0.0 || ^7.8.1
-  checksum: 10c0/5b68c97fbe7ad3d40000588777f3aff04998215cd71531cb0ef861d8a9fc2d0a4b3027d0c6188d2042d4d5ad4f81a3c286063882f0a906aef4576ae6e00f1bad
+  checksum: 10c0/b58a24600236c2e362a848cc4c4d684808de2d43c9764027f6ec098168e6a644b3909730f9588a71f2078a45f1e4c52bdeee7efbf0a4ec6a90408558b54cb7ee
   languageName: node
   linkType: hard
 
@@ -6280,10 +6291,11 @@ __metadata:
     "@angular/platform-browser": "npm:^21.1.1"
     "@angular/router": "npm:^21.1.1"
     "@ianvs/prettier-plugin-sort-imports": "npm:^4.7.0"
+    "@ngrx/operators": "npm:^21.0.1"
     "@ngrx/signals": "npm:^21.0.1"
     "@ngrx/store": "npm:^21.0.1"
     "@ngrx/store-devtools": "npm:^21.0.1"
-    "@primeuix/themes": "npm:^2.0.2"
+    "@primeuix/themes": "npm:^2.0.3"
     "@tailwindcss/postcss": "npm:^4.1.18"
     jsdom: "npm:^27.1.0"
     postcss: "npm:^8.5.6"
@@ -6291,7 +6303,7 @@ __metadata:
     prettier-plugin-organize-attributes: "npm:^1.0.0"
     prettier-plugin-tailwindcss: "npm:^0.7.2"
     primeicons: "npm:^7.0.0"
-    primeng: "npm:^21.0.2"
+    primeng: "npm:^21.1.1"
     rxjs: "npm:~7.8.0"
     tailwindcss: "npm:^4.1.18"
     tailwindcss-primeui: "npm:^0.6.1"
