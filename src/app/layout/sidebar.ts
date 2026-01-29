@@ -9,21 +9,21 @@ import { ThemeIconButtonComponent } from '@shared/components/button';
   selector: 'app-sidebar',
   imports: [RouterLink, RouterLinkActive, Button, ThemeIconButtonComponent],
   template: `
-    <aside class="bg-secondary-700 bg dark:bg-dark-primary-900 flex h-screen w-50 flex-col gap-8 px-2 py-4">
-      <div class="flex items-center justify-center gap-4 p-2">
+    <aside class="bg-secondary-700 dark:bg-dark-primary-900 flex h-screen w-50 flex-col gap-8 px-2 py-4">
+      <div class="flex items-center justify-center gap-2 p-2">
         <img class="h-24 w-auto" loading="eager" src="/logo2.png" alt="WiSave" />
       </div>
 
-      <nav class="flex1 flex flex-col justify-between">
+      <nav class="flex flex-1 flex-col justify-between">
         <ul class="flex flex-col gap-1">
           @for (item of navItems; track item.route) {
             <li>
               <a
                 [routerLink]="item.route"
                 [routerLinkActiveOptions]="{ exact: item.exact }"
-                class="text-text-100 hover:bg-secondary-800 hover:text-text-200 [&.active]:text-text-200 [&.active]:hover:bg-secondary-900 dark:hover:bg-dark-primary-800 dark:[&.active]:hover:bg-dark-primary-700 flex cursor-pointer items-center gap-3 rounded-lg px-4 py-2.5 dark:text-slate-300"
-                routerLinkActive="active bg-secondary-900 dark:bg-dark-primary-700">
-                <i [class]="item.icon + ' text-lg'"></i>
+                class="text-secondary-100 hover:bg-secondary-800 hover:text-secondary-50 dark:text-dark-secondary-200 dark:hover:bg-dark-primary-800 dark:hover:text-dark-secondary-50 [&.active]:bg-secondary-900 [&.active]:text-secondary-50 dark:[&.active]:bg-dark-primary-700 dark:[&.active]:text-dark-secondary-50 [&.active]:hover:bg-secondary-900 dark:[&.active]:hover:bg-dark-primary-700 flex cursor-pointer items-center gap-2.5 rounded-lg px-3 py-2 text-sm transition-colors"
+                routerLinkActive="active">
+                <i [class]="item.icon + ' text-base'"></i>
                 <span class="font-medium">{{ item.label }}</span>
               </a>
             </li>
@@ -31,10 +31,10 @@ import { ThemeIconButtonComponent } from '@shared/components/button';
         </ul>
       </nav>
 
-      <div class="mt-auto flex flex-row justify-around gap-4">
-        <p-button variant="outlined" severity="secondary" icon="pi pi-sign-out" />
-        <p-button variant="outlined" severity="secondary" icon="pi pi-cog" />
-        <theme-icon-button />
+      <div class="sidebar-actions mt-auto flex flex-row justify-around gap-2">
+        <p-button class="p-button-xs sidebar-btn" variant="text" icon="pi pi-sign-out" size="small" />
+        <p-button class="p-button-xs sidebar-btn" variant="text" icon="pi pi-cog" size="small" />
+        <theme-icon-button class="sidebar-btn" />
       </div>
     </aside>
   `,

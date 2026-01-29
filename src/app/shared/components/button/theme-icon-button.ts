@@ -2,12 +2,12 @@ import { Component, inject } from '@angular/core';
 
 import { ButtonModule } from 'primeng/button';
 
-import { ThemeService } from '../../../core/services/ThemeService';
+import { ThemeService } from '@services/ThemeService';
 
 @Component({
   selector: 'theme-icon-button',
   imports: [ButtonModule],
-  template: ` <p-button [icon]="themeService.isDarkMode() ? 'pi pi-sun' : 'pi pi-moon'" (click)="themeService.toggleTheme()" variant="outlined" severity="secondary" /> `,
+  template: ` <p-button [icon]="themeService.isDarkMode() ? 'pi pi-sun' : 'pi pi-moon'" (click)="themeService.toggleTheme()" class="p-button-xs" variant="text" size="small" /> `,
   styles: [
     `
       :host {

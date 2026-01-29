@@ -1,19 +1,20 @@
-/** Button **/
-
-/* Extra small button variant */
 .p-button-xs .p-button {
-  padding: 0.25rem 0.5rem;
-  font-size: 0.75rem;
+  padding: 0.375rem 0.625rem;
+  font-size: 0.8125rem;
 
   .p-button-icon {
-    font-size: 0.7rem;
+    font-size: 0.75rem;
   }
 }
 
 .p-button-outlined {
+  color: var(--color-secondary-600);
+  border-color: var(--color-secondary-300);
+
   &:hover {
-    color: var(--color-primary-200);
-    background-color: var(--color-secondary-800);
+    color: var(--color-secondary-800);
+    background-color: var(--color-secondary-100);
+    border-color: var(--color-secondary-400);
   }
 
   .dark & {
@@ -28,9 +29,6 @@
   }
 }
 
-/** DataTable **/
-
-/* Small table variant - tighter spacing */
 .p-datatable-sm {
   .p-datatable-header {
     padding: 0.5rem 0.75rem;
@@ -49,8 +47,81 @@
   }
 }
 
+.p-datatable {
+  border-radius: 0.75rem;
+  overflow: hidden;
+  box-shadow:
+    0 1px 3px 0 rgba(0, 0, 0, 0.1),
+    0 1px 2px -1px rgba(0, 0, 0, 0.1);
+}
+
+.p-datatable-header {
+  border-bottom: 1px solid var(--color-secondary-200);
+}
+
+.p-datatable-thead > tr > th {
+  border-bottom: 2px solid var(--color-secondary-300) !important;
+  border-right: none !important;
+  font-size: 0.8125rem;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+}
+
+.p-datatable-tbody > tr > td {
+  border-bottom: 1px solid var(--color-secondary-100);
+  border-right: none !important;
+}
+
+.p-datatable-tbody > tr:last-child > td {
+  border-bottom: none;
+}
+
+.p-datatable-tbody > tr {
+  transition: background-color 0.15s ease;
+}
+
+.p-datatable-tbody > tr.p-row-editing {
+  background-color: var(--color-secondary-100) !important;
+}
+
+.p-datatable-striped .p-datatable-tbody > tr:nth-child(even) {
+  background-color: var(--color-secondary-50);
+}
+
+.p-column-filter-menu-button {
+  color: var(--color-secondary-400);
+
+  &:hover {
+    background-color: var(--color-secondary-100);
+    color: var(--color-secondary-700);
+  }
+
+  &.p-column-filter-menu-button-active {
+    background-color: var(--color-accent-500);
+    color: var(--color-secondary-50);
+  }
+}
+
+.p-datatable-sortable-column .p-sortable-column-icon {
+  color: var(--color-secondary-400);
+}
+
+.p-datatable-sortable-column:hover .p-sortable-column-icon {
+  color: var(--color-secondary-600);
+}
+
+.p-datatable-sortable-column.p-highlight .p-sortable-column-icon {
+  color: var(--color-accent-600);
+}
+
+.p-datatable-emptymessage td {
+  text-align: center;
+  padding: 3rem 1rem !important;
+  color: var(--color-secondary-400);
+  font-style: italic;
+}
+
 .dark {
-  /* Table wrapper with subtle shadow and rounded corners */
   .p-datatable {
     border-radius: 0.75rem;
     overflow: hidden;
@@ -59,12 +130,10 @@
       0 2px 4px -2px rgba(0, 0, 0, 0.15);
   }
 
-  /* Table header area (search/actions) */
   .p-datatable-header {
     border-bottom: 1px solid var(--color-dark-primary-700);
   }
 
-  /* Header cells - subtle borders only */
   .p-datatable-thead > tr > th {
     border-bottom: 2px solid var(--color-dark-primary-600) !important;
     border-right: none !important;
@@ -73,33 +142,27 @@
     letter-spacing: 0.025em;
   }
 
-  /* Body cells - minimal borders */
   .p-datatable-tbody > tr > td {
     border-bottom: 1px solid var(--color-dark-primary-750);
     border-right: none !important;
   }
 
-  /* Remove last row border for cleaner look */
   .p-datatable-tbody > tr:last-child > td {
     border-bottom: none;
   }
 
-  /* Hover state with smooth transition */
   .p-datatable-tbody > tr {
     transition: background-color 0.15s ease;
   }
 
-  /* Row editing state */
   .p-datatable-tbody > tr.p-row-editing {
     background-color: var(--color-dark-primary-750) !important;
   }
 
-  /* Striped rows for better readability */
   .p-datatable-striped .p-datatable-tbody > tr:nth-child(even) {
     background-color: var(--color-dark-primary-850);
   }
 
-  /* Column filter button */
   .p-column-filter-menu-button {
     color: var(--color-dark-secondary-400);
 
@@ -114,7 +177,6 @@
     }
   }
 
-  /* Sort icon styling */
   .p-datatable-sortable-column .p-sortable-column-icon {
     color: var(--color-dark-secondary-400);
   }
@@ -127,7 +189,6 @@
     color: var(--color-accent-400);
   }
 
-  /* Empty message styling */
   .p-datatable-emptymessage td {
     text-align: center;
     padding: 3rem 1rem !important;
@@ -136,15 +197,11 @@
   }
 }
 
-/** Input Fields **/
-
-/* Small input variant */
 .p-inputtext-sm {
   padding: 0.375rem 0.625rem;
   font-size: 0.8125rem;
 }
 
-/* Fix icon overlap in small inputs inside iconfield */
 .p-iconfield {
   .p-inputtext-sm {
     padding-left: 2rem;
@@ -157,8 +214,39 @@
   }
 }
 
+.p-inputtext {
+  background-color: var(--color-secondary-50);
+  border-color: var(--color-secondary-300);
+  color: var(--color-secondary-900);
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+
+  &::placeholder {
+    color: var(--color-secondary-400);
+  }
+
+  &:hover {
+    border-color: var(--color-secondary-400);
+  }
+
+  &:focus {
+    border-color: var(--color-accent-500);
+    box-shadow: 0 0 0 2px rgba(217, 119, 6, 0.15);
+  }
+}
+
+.p-iconfield {
+  .p-inputicon {
+    color: var(--color-secondary-400);
+  }
+
+  .p-inputtext {
+    background-color: var(--color-secondary-50);
+  }
+}
+
 .dark {
-  /* Input text fields */
   .p-inputtext {
     background-color: var(--color-dark-primary-900);
     border-color: var(--color-dark-primary-500);
@@ -181,7 +269,6 @@
     }
   }
 
-  /* Icon field styling */
   .p-iconfield {
     .p-inputicon {
       color: var(--color-dark-secondary-400);
@@ -193,7 +280,29 @@
   }
 }
 
-/** Chip **/
+.p-chip {
+  background-color: var(--color-secondary-100);
+  color: var(--color-secondary-700);
+  border: 1px solid var(--color-secondary-200);
+
+  &.p-chip-success {
+    background-color: rgba(217, 119, 6, 0.1);
+    border-color: rgba(217, 119, 6, 0.25);
+    color: var(--color-accent-700);
+  }
+
+  &.p-chip-info {
+    background-color: rgba(59, 130, 246, 0.1);
+    border-color: rgba(59, 130, 246, 0.25);
+    color: #2563eb;
+  }
+
+  &.p-chip-warning {
+    background-color: rgba(245, 158, 11, 0.1);
+    border-color: rgba(245, 158, 11, 0.25);
+    color: #b45309;
+  }
+}
 
 .dark {
   .p-chip {
@@ -202,9 +311,9 @@
     border: 1px solid var(--color-dark-primary-600);
 
     &.p-chip-success {
-      background-color: rgba(34, 197, 94, 0.15);
-      border-color: rgba(34, 197, 94, 0.3);
-      color: #86efac;
+      background-color: rgba(251, 191, 36, 0.15);
+      border-color: rgba(251, 191, 36, 0.3);
+      color: var(--color-accent-400);
     }
 
     &.p-chip-info {
@@ -221,7 +330,20 @@
   }
 }
 
-/** DatePicker **/
+.p-datepicker {
+  background-color: var(--color-secondary-50);
+  border-color: var(--color-secondary-300);
+  color: var(--color-secondary-900);
+
+  &:hover {
+    border-color: var(--color-secondary-400);
+  }
+
+  &:focus {
+    border-color: var(--color-accent-500);
+    box-shadow: 0 0 0 2px rgba(217, 119, 6, 0.15);
+  }
+}
 
 .dark {
   .p-datepicker {
@@ -240,49 +362,119 @@
   }
 }
 
-/** Paginator **/
+.p-paginator {
+  background-color: var(--color-secondary-50);
+  border-top: 1px solid var(--color-secondary-200);
+  padding: 0.5rem 0.75rem;
+
+  .p-paginator-element {
+    border: 1px solid var(--color-secondary-300);
+    font-size: 0.75rem;
+    font-weight: 500;
+
+    &:hover:not(.p-disabled) {
+      border-color: var(--color-secondary-400);
+      background-color: var(--color-secondary-100);
+    }
+
+    &.p-paginator-page.p-highlight,
+    &.p-paginator-page-selected {
+      font-weight: 600;
+    }
+  }
+
+  .p-paginator-current {
+    color: var(--color-secondary-500);
+    font-size: 0.75rem;
+  }
+
+  .p-select {
+    background-color: transparent;
+    border: 1px solid var(--color-secondary-300);
+    color: var(--color-secondary-700);
+    font-size: 0.75rem;
+    height: 1.75rem;
+
+    .p-select-label {
+      padding: 0 0.5rem;
+      font-size: 0.75rem;
+      line-height: 1.75rem;
+      display: flex;
+      align-items: center;
+    }
+
+    .p-select-dropdown {
+      width: 1.75rem;
+    }
+
+    &:hover {
+      border-color: var(--color-secondary-400);
+      background-color: var(--color-secondary-100);
+    }
+  }
+}
 
 .dark {
   .p-paginator {
     background-color: var(--color-dark-primary-900);
     border-top: 1px solid var(--color-dark-primary-700);
-    padding: 0.75rem 1rem;
+    padding: 0.5rem 0.75rem;
 
     .p-paginator-element {
-      color: var(--color-dark-secondary-300);
-      min-width: 2.25rem;
-      height: 2.25rem;
-      border-radius: 0.375rem;
-      transition: all 0.15s ease;
+      border: 1px solid var(--color-dark-primary-400);
+      font-size: 0.75rem;
+      font-weight: 500;
 
       &:hover:not(.p-disabled) {
-        background-color: var(--color-dark-primary-700);
-        color: var(--color-dark-secondary-50);
+        border-color: var(--color-dark-secondary-200);
       }
 
-      &.p-paginator-page.p-highlight {
-        background-color: var(--color-accent-500);
-        color: var(--color-dark-primary-950);
+      &.p-paginator-page.p-highlight,
+      &.p-paginator-page-selected {
+        font-weight: 600;
       }
     }
 
     .p-paginator-current {
       color: var(--color-dark-secondary-300);
+      font-size: 0.75rem;
     }
 
-    /* Rows per page dropdown */
     .p-select {
-      background-color: var(--color-dark-primary-850);
-      border-color: var(--color-dark-primary-500);
+      background-color: transparent;
+      border: 1px solid var(--color-dark-primary-400);
+      color: var(--color-dark-primary-100);
+      font-size: 0.75rem;
+      height: 1.75rem;
+
+      .p-select-label {
+        padding: 0 0.5rem;
+        font-size: 0.75rem;
+        line-height: 1.75rem;
+        display: flex;
+        align-items: center;
+      }
+
+      .p-select-dropdown {
+        width: 1.75rem;
+      }
 
       &:hover {
-        border-color: var(--color-dark-primary-400);
+        border-color: var(--color-dark-secondary-200);
+        background-color: var(--color-dark-primary-700);
       }
     }
   }
 }
 
-/** Filter Overlay **/
+.p-datatable-filter-overlay {
+  background-color: var(--color-secondary-50);
+  border: 1px solid var(--color-secondary-200);
+  box-shadow:
+    0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+}
 
 .dark {
   .p-datatable-filter-overlay {
@@ -295,9 +487,6 @@
   }
 }
 
-/** Action Buttons in Table **/
-
-/* Small rounded icon buttons */
 .p-button-sm.p-button-icon-only.p-button-rounded {
   width: 1.75rem;
   height: 1.75rem;
@@ -308,9 +497,37 @@
   }
 }
 
+.p-datatable-tbody {
+  .p-button-text {
+    &.p-button-secondary {
+      color: var(--color-secondary-500);
+
+      &:hover {
+        background-color: var(--color-secondary-100);
+        color: var(--color-secondary-800);
+      }
+    }
+
+    &.p-button-success {
+      color: var(--color-accent-600);
+
+      &:hover {
+        background-color: rgba(217, 119, 6, 0.1);
+      }
+    }
+
+    &.p-button-danger {
+      color: #dc2626;
+
+      &:hover {
+        background-color: rgba(239, 68, 68, 0.1);
+      }
+    }
+  }
+}
+
 .dark {
   .p-datatable-tbody {
-    /* Edit/Action buttons */
     .p-button-text {
       &.p-button-secondary {
         color: var(--color-dark-secondary-300);
@@ -322,10 +539,10 @@
       }
 
       &.p-button-success {
-        color: #86efac;
+        color: var(--color-accent-400);
 
         &:hover {
-          background-color: rgba(34, 197, 94, 0.15);
+          background-color: rgba(251, 191, 36, 0.15);
         }
       }
 
@@ -340,14 +557,44 @@
   }
 }
 
-/** Status Icons **/
+.sidebar-actions {
+  .sidebar-btn .p-button {
+    color: var(--color-secondary-200);
+    background: transparent;
+    border: 1px solid var(--color-secondary-500);
+    border-radius: 0.5rem;
+
+    &:hover {
+      color: var(--color-secondary-50);
+      background: var(--color-secondary-800);
+      border-color: var(--color-secondary-400);
+    }
+  }
+}
+
+.dark .sidebar-actions {
+  .sidebar-btn .p-button {
+    color: var(--color-dark-secondary-300);
+    border-color: var(--color-dark-primary-500);
+
+    &:hover {
+      color: var(--color-dark-secondary-100);
+      background: var(--color-dark-primary-700);
+      border-color: var(--color-dark-primary-400);
+    }
+  }
+}
+
+.text-accent-500 {
+  color: var(--color-accent-500) !important;
+}
 
 .dark {
-  .text-green-500 {
-    color: #86efac !important;
+  .text-accent-500 {
+    color: var(--color-accent-400) !important;
   }
 
-  .text-red-500 {
-    color: #fca5a5 !important;
+  .text-accent-400 {
+    color: var(--color-accent-400) !important;
   }
 }
