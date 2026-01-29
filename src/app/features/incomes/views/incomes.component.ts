@@ -1,5 +1,4 @@
-import { DatePipe } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 
 import { Divider } from 'primeng/divider';
 import { TableModule } from 'primeng/table';
@@ -13,7 +12,7 @@ import { IncomesStore } from '@features/incomes/store/incomes.store';
   template: `
     <div class="flex flex-1 p-4">
       <div class="flex w-3/4">
-        <app-incomes-table [isLoading]="false" [data]="incomes" />
+        <app-incomes-table [isLoading]="store.isLoading()" [data]="store.incomes()" />
       </div>
       <p-divider layout="vertical" />
       <div class="w-1/4">xd</div>
@@ -27,10 +26,10 @@ import { IncomesStore } from '@features/incomes/store/incomes.store';
     }
   `,
 })
-export class IncomesComponent {
-  #store = inject(IncomesStore);
+export class IncomesComponent implements OnInit {
+  readonly store = inject(IncomesStore);
 
-  get incomes() {
-    return this.#store.incomes();
+  ngOnInit(): void {
+    this.store.loadIncomes();
   }
 }
