@@ -121,6 +121,22 @@
   font-style: italic;
 }
 
+.p-datatable-column-filter-button {
+  width: auto;
+  height: auto;
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+
+  .p-icon {
+    width: 0.625rem;
+    height: 0.625rem;
+  }
+
+  &:hover {
+    background-color: var(--color-secondary-100);
+  }
+}
+
 .dark {
   .p-datatable {
     border-radius: 0.75rem;
@@ -194,6 +210,10 @@
     padding: 3rem 1rem !important;
     color: var(--color-dark-secondary-400);
     font-style: italic;
+  }
+
+  .p-datatable-column-filter-button:hover {
+    background-color: var(--color-dark-primary-700);
   }
 }
 
