@@ -7,15 +7,15 @@ import { v7 as uuid } from 'uuid';
 import { Currency } from '@core/types';
 import { IIncome } from '@features/incomes/types/incomes.interfaces';
 
-type IncomesFilter = {
+interface IncomesFilter {
   query: string;
   order: 'asc' | 'desc';
-};
+}
 
-type IncomesStoreState = {
+interface IncomesStoreState {
   isLoading: boolean;
   filter: IncomesFilter;
-};
+}
 
 const initialState: IncomesStoreState = {
   isLoading: false,

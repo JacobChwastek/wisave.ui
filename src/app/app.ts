@@ -19,4 +19,4 @@ import { SidebarComponent } from '@layout/sidebar';
     }
   `,
 })
-export class App {}
+export class AppComponent {}
