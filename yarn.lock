@@ -851,7 +851,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@apollo/client@npm:^4.0.1":
+"@apollo/client@npm:^4.1.3":
   version: 4.1.3
   resolution: "@apollo/client@npm:4.1.3"
   dependencies:
@@ -6545,17 +6545,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"apollo-angular@npm:^9.0.0":
-  version: 9.0.0
-  resolution: "apollo-angular@npm:9.0.0"
+"apollo-angular@npm:^13.0.0":
+  version: 13.0.0
+  resolution: "apollo-angular@npm:13.0.0"
   dependencies:
     tslib: "npm:^2.6.2"
   peerDependencies:
-    "@angular/core": ^17.0.0 || ^18.0.0 || ^19.0.0
-    "@apollo/client": ^3.13.1
-    graphql: ^15.0.0 || ^16.0.0
-    rxjs: ^6.0.0 || ^7.0.0
-  checksum: 10c0/1be4e3b5e62e64fafd097933c66215479b2bf22477913667369a9740ba26ca948c5ce20d3e8ea5ba5bc2e3796ba6cc1dac5aa2e9ebbc3c24b579e23f52280510
+    "@angular/core": ^19.0.0 || ^20.0.0 || ^21.0.0
+    "@apollo/client": ^4.0.1
+    graphql: ^16.0.0
+    rxjs: ^7.8.0
+  checksum: 10c0/22b7e4147abc7d1d52fc1dc6d1d5ed6befd13c869a4d7f002754e54cade21f1221c8444c8f6aee1e03ad87f3ec3315e199613f4b15d4ca06ada9260dd615ae92
   languageName: node
   linkType: hard
 
@@ -8949,7 +8949,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"graphql@npm:^16":
+"graphql@npm:^16.12.0":
   version: 16.12.0
   resolution: "graphql@npm:16.12.0"
   checksum: 10c0/b6fffa4e8a4e4a9933ebe85e7470b346dbf49050c1a482fac5e03e4a1a7bed2ecd3a4c97e29f04457af929464bc5e4f2aac991090c2f320111eef26e902a5c75
@@ -13964,7 +13964,7 @@ __metadata:
     "@angular/platform-browser": "npm:^21.1.1"
     "@angular/platform-browser-dynamic": "npm:^21.1.1"
     "@angular/router": "npm:^21.1.1"
-    "@apollo/client": "npm:^4.0.1"
+    "@apollo/client": "npm:^4.1.3"
     "@eslint/js": "npm:^9.39.2"
     "@graphql-codegen/cli": "npm:^6.1.1"
     "@graphql-codegen/near-operation-file-preset": "npm:^4.0.0"
@@ -13984,14 +13984,14 @@ __metadata:
     "@typescript-eslint/parser": "npm:^8.54.0"
     "@typescript-eslint/types": "npm:^8.54.0"
     "@typescript-eslint/utils": "npm:^8.54.0"
-    apollo-angular: "npm:^9.0.0"
+    apollo-angular: "npm:^13.0.0"
     eslint: "npm:^9.39.2"
     eslint-config-prettier: "npm:^10.1.8"
     eslint-plugin-boundaries: "npm:^5.3.1"
     eslint-plugin-no-secrets: "npm:^2.2.1"
     eslint-plugin-security: "npm:^3.0.1"
     eslint-plugin-unused-imports: "npm:^4.3.0"
-    graphql: "npm:^16"
+    graphql: "npm:^16.12.0"
     jsdom: "npm:^27.1.0"
     postcss: "npm:^8.5.6"
     prettier: "npm:^3.7.4"

@@ -148,16 +148,19 @@ export class IncomesTableComponent {
 
   filter(): void {
     const dates = this.datesFilter();
-    const filterPayload = {
+
+    if (!dates || dates.length === 0) {
+      return;
+    }
+
+    this.filtersApplied.emit({
       filter: {
         dateRange: {
           from: dates?.[0] ?? null,
           to: dates?.[1] ?? null,
         },
       },
-    };
-
-    this.filtersApplied.emit(filterPayload);
+    });
   }
 
   clearFilters(): void {
