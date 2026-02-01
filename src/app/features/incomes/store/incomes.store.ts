@@ -6,7 +6,7 @@ import { on } from '@ngrx/signals/events';
 
 import { withIncomesEventHandlers } from './incomes.event-handlers';
 import { incomesApiEvents, incomesPageEvents } from './incomes.events';
-import { initialState } from './incomes.state';
+import { initialFilter, initialState } from './incomes.state';
 
 export const IncomesStore = signalStore(
   { providedIn: 'root' },
@@ -41,11 +41,34 @@ export const IncomesStore = signalStore(
     on(incomesPageEvents.add, () => ({ isLoading: true, error: null })),
     on(incomesPageEvents.update, () => ({ isLoading: true, error: null })),
     on(incomesPageEvents.remove, () => ({ isLoading: true, error: null })),
-    on(incomesPageEvents.filterChanged, ({ payload }, state) => ({
+    on(incomesPageEvents.filterApplied, ({ payload }, state) => ({
+      isLoading: true,
+      error: null,
       filter: {
         ...state.filter,
-        ...(payload.query !== undefined && { query: payload.query }),
-        ...(payload.order !== undefined && { order: payload.order }),
+        ...payload.filter,
+      },
+      pagination: {
+        ...state.pagination,
+        currentPage: 1,
+      },
+    })),
+    on(incomesPageEvents.filtersCleared, (_, state) => ({
+      isLoading: true,
+      error: null,
+      filter: initialFilter,
+      pagination: {
+        ...state.pagination,
+        currentPage: 1,
+      },
+    })),
+    on(incomesPageEvents.sortChanged, ({ payload }, state) => ({
+      isLoading: true,
+      error: null,
+      sort: payload.sort,
+      pagination: {
+        ...state.pagination,
+        currentPage: 1,
       },
     })),
 
@@ -80,6 +103,15 @@ export const IncomesStore = signalStore(
     on(incomesApiEvents.removedFailure, ({ payload }) => ({
       isLoading: false,
       error: payload.error,
+    })),
+
+    // Categories
+    on(incomesApiEvents.categoriesLoadedSuccess, ({ payload }) => ({
+      availableCategories: payload.categories,
+      categoriesLoading: false,
+    })),
+    on(incomesApiEvents.categoriesLoadedFailure, () => ({
+      categoriesLoading: false,
     })),
   ),
   withIncomesEventHandlers(),

@@ -1,12 +1,14 @@
-import { Component, computed, effect, inject, OnInit } from '@angular/core';
+import { Component, computed, inject, OnInit } from '@angular/core';
 
 import { Divider } from 'primeng/divider';
 import { TableModule } from 'primeng/table';
 
-import { IncomesTableComponent, PageNavigationEvent, PageSizeChangeEvent } from '@features/incomes/components/incomes-table/incomes-table.component';
+import { IFilterAppliedEvent, IncomesTableComponent } from '@features/incomes/components/incomes-table/incomes-table.component';
 import { incomesPageEvents } from '@features/incomes/store/incomes.events';
 import { IncomesStore } from '@features/incomes/store/incomes.store';
 import { injectDispatch } from '@ngrx/signals/events';
+
+import { IPageNavigationEvent, IPageSizeChangeEvent } from '@shared/types';
 
 @Component({
   selector: 'app-incomes',
@@ -22,7 +24,9 @@ import { injectDispatch } from '@ngrx/signals/events';
           [currentPage]="store.pagination().currentPage"
           [pageInfo]="store.pagination().pageInfo"
           (navigatePage)="onNavigatePage($event)"
-          (pageSizeChange)="onPageSizeChange($event)" />
+          (pageSizeChange)="onPageSizeChange($event)"
+          (filtersApplied)="onFilterApplied($event)"
+          (filtersCleared)="onFiltersClear()" />
       </div>
 
       <p-divider layout="vertical" />
@@ -47,11 +51,19 @@ export class IncomesComponent implements OnInit {
     this.dispatch.opened();
   }
 
-  onNavigatePage(event: PageNavigationEvent): void {
+  onNavigatePage(event: IPageNavigationEvent): void {
     this.dispatch.navigatePage({ direction: event.direction, cursor: event.cursor, pageSize: event.pageSize });
   }
 
-  onPageSizeChange(event: PageSizeChangeEvent): void {
+  onPageSizeChange(event: IPageSizeChangeEvent): void {
     this.dispatch.pageSizeChanged({ rows: event.rows });
+  }
+
+  onFilterApplied(event: IFilterAppliedEvent): void {
+    this.dispatch.filterApplied({ filter: event.filter });
+  }
+
+  onFiltersClear(): void {
+    this.dispatch.filtersCleared();
   }
 }

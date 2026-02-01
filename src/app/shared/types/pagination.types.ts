@@ -33,3 +33,13 @@ export const initialPagination: IPagination = {
   totalRecords: 0,
   pageInfo: initialPageInfo,
 };
+
+export interface IPageNavigationEvent {
+  direction: CursorDirection;
+  cursor: string | null;
+  pageSize: number;
+}
+
+export interface IPageSizeChangeEvent {
+  rows: number;
+}

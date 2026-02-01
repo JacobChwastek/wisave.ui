@@ -76,6 +76,15 @@
   border-bottom: none;
 }
 
+/* Remove border between table and paginator */
+.p-datatable .p-datatable-paginator-bottom,
+.p-datatable .p-paginator-bottom,
+.p-datatable-footer,
+.p-datatable .p-paginator {
+  border-top: none !important;
+  border-color: transparent !important;
+}
+
 .p-datatable-tbody > tr {
   transition: background-color 0.15s ease;
 }
@@ -165,6 +174,15 @@
 
   .p-datatable-tbody > tr:last-child > td {
     border-bottom: none;
+  }
+
+  /* Remove border between table and paginator */
+  .p-datatable .p-datatable-paginator-bottom,
+  .p-datatable .p-paginator-bottom,
+  .p-datatable-footer,
+  .p-datatable .p-paginator {
+    border-top: none !important;
+    border-color: transparent !important;
   }
 
   .p-datatable-tbody > tr {
@@ -350,41 +368,618 @@
   }
 }
 
+/* DatePicker component - comprehensive styling */
 .p-datepicker {
-  background-color: var(--color-secondary-50);
-  border-color: var(--color-secondary-400);
-  color: var(--color-secondary-900);
+  /* Input field styling */
+  .p-datepicker-input {
+    background-color: var(--color-secondary-50);
+    border: 1px solid var(--color-divider);
+    color: var(--color-secondary-900);
+    font-size: 0.8125rem;
+    padding: 0.375rem 0.625rem;
+    border-radius: 0.375rem;
+    min-width: 220px;
+    transition:
+      border-color 0.15s ease,
+      box-shadow 0.15s ease;
 
-  &:hover {
-    border-color: var(--color-secondary-400);
-  }
-
-  &:focus {
-    border-color: var(--color-accent-500);
-    box-shadow: 0 0 0 2px rgba(194, 120, 20, 0.15);
-  }
-}
-
-.dark {
-  .p-datepicker {
-    background-color: var(--color-dark-primary-900);
-    border-color: var(--color-dark-primary-500);
-    color: var(--color-dark-secondary-50);
+    &::placeholder {
+      color: var(--color-secondary-400);
+    }
 
     &:hover {
-      border-color: var(--color-dark-primary-400);
+      border-color: var(--color-secondary-400);
     }
 
     &:focus {
       border-color: var(--color-accent-500);
-      box-shadow: 0 0 0 2px rgba(234, 170, 50, 0.2);
+      box-shadow: 0 0 0 2px rgba(194, 120, 20, 0.15);
+      outline: none;
+    }
+  }
+
+  /* When icon is shown, adjust input border-radius */
+  &.p-datepicker-icon .p-datepicker-input,
+  &:has(.p-datepicker-dropdown) .p-datepicker-input {
+    border-right: none;
+    border-radius: 0.375rem 0 0 0.375rem;
+  }
+
+  /* Dropdown trigger button (icon) */
+  .p-datepicker-dropdown {
+    background-color: var(--color-secondary-100);
+    border: 1px solid var(--color-divider);
+    color: var(--color-secondary-600);
+    border-radius: 0 0.375rem 0.375rem 0;
+    padding: 0 0.625rem;
+
+    &:hover {
+      background-color: var(--color-secondary-200);
+      color: var(--color-secondary-800);
+    }
+
+    &:focus {
+      box-shadow: 0 0 0 2px rgba(194, 120, 20, 0.15);
+      outline: none;
+      z-index: 1;
+    }
+  }
+}
+
+/* DatePicker panel (popup calendar) */
+.p-datepicker-panel {
+  background-color: var(--color-secondary-50);
+  border: 1px solid var(--color-divider);
+  border-radius: 0.5rem;
+  box-shadow:
+    0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  min-width: 320px;
+
+  /* Calendar header with month/year navigation */
+  .p-datepicker-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 0 0.5rem 0;
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid var(--color-divider);
+  }
+
+  /* Month/Year title */
+  .p-datepicker-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    .p-datepicker-select-month,
+    .p-datepicker-select-year {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--color-secondary-800);
+      background: transparent;
+      border: none;
+      padding: 0.25rem 0.5rem;
+      border-radius: 0.25rem;
+      cursor: pointer;
+      transition: background-color 0.15s ease;
+
+      &:hover {
+        background-color: var(--color-secondary-100);
+      }
+    }
+  }
+
+  /* Navigation buttons (prev/next month) */
+  .p-datepicker-prev,
+  .p-datepicker-next {
+    width: 1.75rem;
+    height: 1.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.375rem;
+    color: var(--color-secondary-600);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: all 0.15s ease;
+
+    &:hover {
+      background-color: var(--color-secondary-100);
+      color: var(--color-secondary-800);
+    }
+
+    &:focus {
+      box-shadow: 0 0 0 2px rgba(194, 120, 20, 0.15);
+      outline: none;
+    }
+
+    .p-icon {
+      width: 0.75rem;
+      height: 0.75rem;
+    }
+  }
+
+  /* Calendar table */
+  .p-datepicker-calendar {
+    width: 100%;
+    font-size: 0.875rem;
+    border-collapse: collapse;
+
+    th {
+      padding: 0.625rem 0.25rem;
+      color: var(--color-secondary-500);
+      font-weight: 500;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.025em;
+    }
+
+    td {
+      padding: 0.125rem;
+
+      > span {
+        width: 2.25rem;
+        height: 2.25rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 0.375rem;
+        cursor: pointer;
+        transition: all 0.15s ease;
+        color: var(--color-secondary-800);
+
+        &:hover:not(.p-disabled):not(.p-datepicker-day-selected) {
+          background-color: var(--color-secondary-100);
+        }
+
+        &.p-datepicker-day-selected {
+          background-color: var(--color-accent-500);
+          color: var(--color-secondary-50);
+          font-weight: 600;
+        }
+
+        &.p-datepicker-today:not(.p-datepicker-day-selected) {
+          border: 1px solid var(--color-accent-500);
+          color: var(--color-accent-600);
+          font-weight: 600;
+        }
+
+        &.p-disabled {
+          color: var(--color-secondary-300);
+          cursor: not-allowed;
+        }
+      }
+    }
+  }
+
+  /* Other month days */
+  .p-datepicker-other-month {
+    > span {
+      color: var(--color-secondary-400) !important;
+    }
+  }
+
+  /* Range selection highlight */
+  .p-datepicker-day-selected-range {
+    > span {
+      background-color: rgba(194, 120, 20, 0.12) !important;
+      color: var(--color-accent-700) !important;
+      border-radius: 0;
+    }
+
+    &:first-child > span,
+    &.p-datepicker-day-selected > span {
+      border-radius: 0.375rem 0 0 0.375rem;
+    }
+
+    &:last-child > span {
+      border-radius: 0 0.375rem 0.375rem 0;
+    }
+  }
+
+  /* Month/Year picker panels */
+  .p-datepicker-month-view,
+  .p-datepicker-year-view {
+    .p-datepicker-month,
+    .p-datepicker-year {
+      padding: 0.5rem;
+      border-radius: 0.375rem;
+      color: var(--color-secondary-700);
+      cursor: pointer;
+      transition: all 0.15s ease;
+
+      &:hover {
+        background-color: var(--color-secondary-100);
+      }
+
+      &.p-datepicker-month-selected,
+      &.p-datepicker-year-selected {
+        background-color: var(--color-accent-500);
+        color: var(--color-secondary-50);
+        font-weight: 600;
+      }
+    }
+  }
+
+  /* Button bar */
+  .p-datepicker-buttonbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem 0 0 0;
+    margin-top: 0.5rem;
+    border-top: 1px solid var(--color-divider);
+    gap: 0.5rem;
+
+    /* Base button styling in button bar */
+    .p-button {
+      font-size: 0.75rem;
+      padding: 0.3rem 0.5rem;
+      border-radius: 0.25rem;
+      font-weight: 500;
+      transition: all 0.15s ease;
+
+      .p-button-icon {
+        font-size: 0.7rem;
+      }
+    }
+
+    /* Secondary buttons (Last month, This month) - chip-like style */
+    .p-button-secondary {
+      background-color: var(--color-secondary-100);
+      border: 1px solid var(--color-secondary-200);
+      color: var(--color-secondary-600);
+
+      &:hover {
+        background-color: var(--color-secondary-200);
+        border-color: var(--color-secondary-300);
+        color: var(--color-secondary-800);
+      }
+
+      &:focus {
+        box-shadow: 0 0 0 2px rgba(194, 120, 20, 0.12);
+      }
+    }
+
+    /* Outlined buttons (Today) */
+    .p-button-outlined {
+      background-color: transparent;
+      border: 1px solid var(--color-accent-500);
+      color: var(--color-accent-600);
+
+      &:hover {
+        background-color: rgba(194, 120, 20, 0.08);
+        border-color: var(--color-accent-600);
+        color: var(--color-accent-700);
+      }
+
+      &:focus {
+        box-shadow: 0 0 0 2px rgba(194, 120, 20, 0.15);
+      }
+    }
+
+    /* Text buttons (Clear/X) */
+    .p-button-text {
+      background-color: transparent;
+      border: none;
+      padding: 0.3rem;
+
+      &.p-button-danger {
+        color: var(--color-secondary-400);
+
+        &:hover {
+          background-color: rgba(239, 68, 68, 0.1);
+          color: #dc2626;
+        }
+      }
+    }
+  }
+
+  /* Time picker */
+  .p-datepicker-time-picker {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+    padding: 0.5rem 0;
+    border-top: 1px solid var(--color-divider);
+    margin-top: 0.5rem;
+
+    .p-datepicker-hour-picker,
+    .p-datepicker-minute-picker,
+    .p-datepicker-second-picker {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.25rem;
+
+      button {
+        width: 1.75rem;
+        height: 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 0.25rem;
+        color: var(--color-secondary-600);
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        transition: all 0.15s ease;
+
+        &:hover {
+          background-color: var(--color-secondary-100);
+          color: var(--color-secondary-800);
+        }
+
+        .p-icon {
+          width: 0.625rem;
+          height: 0.625rem;
+        }
+      }
+
+      span {
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: var(--color-secondary-800);
+        min-width: 2rem;
+        text-align: center;
+      }
+    }
+
+    .p-datepicker-separator {
+      font-size: 0.875rem;
+      color: var(--color-secondary-500);
+      margin: 0 0.25rem;
+    }
+
+    .p-datepicker-ampm-picker {
+      margin-left: 0.5rem;
+
+      button {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.75rem;
+        font-weight: 600;
+        border-radius: 0.25rem;
+        background: var(--color-secondary-100);
+        color: var(--color-secondary-700);
+        border: none;
+        cursor: pointer;
+        transition: all 0.15s ease;
+
+        &:hover {
+          background: var(--color-secondary-200);
+        }
+      }
+    }
+  }
+}
+
+/* Dark mode */
+.dark {
+  .p-datepicker {
+    .p-datepicker-input {
+      background-color: var(--color-dark-primary-900);
+      border-color: var(--color-dark-primary-500);
+      color: var(--color-dark-secondary-50);
+
+      &::placeholder {
+        color: var(--color-dark-secondary-400);
+      }
+
+      &:hover {
+        border-color: var(--color-dark-primary-400);
+      }
+
+      &:focus {
+        border-color: var(--color-accent-500);
+        box-shadow: 0 0 0 2px rgba(234, 170, 50, 0.2);
+      }
+    }
+
+    .p-datepicker-dropdown {
+      background-color: var(--color-dark-primary-800);
+      border-color: var(--color-dark-primary-500);
+      color: var(--color-dark-secondary-200);
+
+      &:hover {
+        background-color: var(--color-dark-primary-700);
+        color: var(--color-dark-secondary-50);
+      }
+
+      &:focus {
+        box-shadow: 0 0 0 2px rgba(234, 170, 50, 0.2);
+        outline: none;
+        z-index: 1;
+      }
+    }
+
+    /* When icon is shown, adjust input border-radius */
+    &.p-datepicker-icon .p-datepicker-input,
+    &:has(.p-datepicker-dropdown) .p-datepicker-input {
+      border-right: none;
+    }
+  }
+
+  .p-datepicker-panel {
+    background-color: var(--color-dark-primary-800);
+    border-color: var(--color-dark-divider-strong);
+    box-shadow:
+      0 10px 15px -3px rgba(0, 0, 0, 0.4),
+      0 4px 6px -4px rgba(0, 0, 0, 0.3);
+
+    .p-datepicker-header {
+      border-bottom-color: var(--color-dark-divider-strong);
+    }
+
+    .p-datepicker-title {
+      .p-datepicker-select-month,
+      .p-datepicker-select-year {
+        color: var(--color-dark-secondary-50);
+
+        &:hover {
+          background-color: var(--color-dark-primary-700);
+        }
+      }
+    }
+
+    .p-datepicker-prev,
+    .p-datepicker-next {
+      color: var(--color-dark-secondary-200);
+
+      &:hover {
+        background-color: var(--color-dark-primary-700);
+        color: var(--color-dark-secondary-50);
+      }
+
+      &:focus {
+        box-shadow: 0 0 0 2px rgba(234, 170, 50, 0.2);
+      }
+    }
+
+    .p-datepicker-calendar {
+      th {
+        color: var(--color-dark-secondary-400);
+      }
+
+      td > span {
+        color: var(--color-dark-secondary-100);
+
+        &:hover:not(.p-disabled):not(.p-datepicker-day-selected) {
+          background-color: var(--color-dark-primary-700);
+        }
+
+        &.p-datepicker-day-selected {
+          background-color: var(--color-accent-500);
+          color: var(--color-dark-primary-950);
+        }
+
+        &.p-datepicker-today:not(.p-datepicker-day-selected) {
+          border-color: var(--color-accent-500);
+          color: var(--color-accent-400);
+        }
+
+        &.p-disabled {
+          color: var(--color-dark-secondary-500);
+        }
+      }
+    }
+
+    .p-datepicker-other-month > span {
+      color: var(--color-dark-secondary-500) !important;
+    }
+
+    .p-datepicker-day-selected-range > span {
+      background-color: rgba(234, 170, 50, 0.15) !important;
+      color: var(--color-accent-400) !important;
+    }
+
+    .p-datepicker-month-view,
+    .p-datepicker-year-view {
+      .p-datepicker-month,
+      .p-datepicker-year {
+        color: var(--color-dark-secondary-100);
+
+        &:hover {
+          background-color: var(--color-dark-primary-700);
+        }
+
+        &.p-datepicker-month-selected,
+        &.p-datepicker-year-selected {
+          background-color: var(--color-accent-500);
+          color: var(--color-dark-primary-950);
+        }
+      }
+    }
+
+    .p-datepicker-buttonbar {
+      border-top-color: var(--color-dark-divider-strong);
+
+      /* Secondary buttons (Last month, This month) */
+      .p-button-secondary {
+        background-color: var(--color-dark-primary-700);
+        border-color: var(--color-dark-primary-600);
+        color: var(--color-dark-secondary-200);
+
+        &:hover {
+          background-color: var(--color-dark-primary-600);
+          border-color: var(--color-dark-primary-500);
+          color: var(--color-dark-secondary-50);
+        }
+
+        &:focus {
+          box-shadow: 0 0 0 2px rgba(234, 170, 50, 0.15);
+        }
+      }
+
+      /* Outlined buttons (Today) */
+      .p-button-outlined {
+        background-color: transparent;
+        border-color: var(--color-accent-500);
+        color: var(--color-accent-400);
+
+        &:hover {
+          background-color: rgba(234, 170, 50, 0.12);
+          border-color: var(--color-accent-400);
+          color: var(--color-accent-300);
+        }
+
+        &:focus {
+          box-shadow: 0 0 0 2px rgba(234, 170, 50, 0.2);
+        }
+      }
+
+      /* Text buttons (Clear/X) */
+      .p-button-text.p-button-danger {
+        color: var(--color-dark-secondary-400);
+
+        &:hover {
+          background-color: rgba(239, 68, 68, 0.15);
+          color: #fca5a5;
+        }
+      }
+    }
+
+    .p-datepicker-time-picker {
+      border-top-color: var(--color-dark-divider-strong);
+
+      .p-datepicker-hour-picker,
+      .p-datepicker-minute-picker,
+      .p-datepicker-second-picker {
+        button {
+          color: var(--color-dark-secondary-200);
+
+          &:hover {
+            background-color: var(--color-dark-primary-700);
+            color: var(--color-dark-secondary-50);
+          }
+        }
+
+        span {
+          color: var(--color-dark-secondary-50);
+        }
+      }
+
+      .p-datepicker-separator {
+        color: var(--color-dark-secondary-400);
+      }
+
+      .p-datepicker-ampm-picker button {
+        background: var(--color-dark-primary-700);
+        color: var(--color-dark-secondary-100);
+
+        &:hover {
+          background: var(--color-dark-primary-600);
+        }
+      }
     }
   }
 }
 
 .p-paginator {
   background-color: var(--color-secondary-50);
-  border-top: 1px solid var(--color-divider);
+  border-top: none;
   padding: 0.5rem 0.75rem;
 
   .p-paginator-element {
@@ -437,7 +1032,7 @@
 .dark {
   .p-paginator {
     background-color: var(--color-dark-primary-900);
-    border-top: 1px solid var(--color-dark-divider);
+    border-top: none;
     padding: 0.5rem 0.75rem;
 
     .p-paginator-element {
@@ -647,5 +1242,87 @@
 
   &.p-divider-vertical::before {
     border-left-color: var(--color-dark-divider);
+  }
+}
+
+/* ButtonGroup component */
+.p-buttongroup {
+  .p-button {
+    background-color: var(--color-secondary-50);
+    border: 1px solid var(--color-divider);
+    color: var(--color-secondary-700);
+
+    &:hover {
+      background-color: var(--color-secondary-100);
+      border-color: var(--color-secondary-400);
+      color: var(--color-secondary-800);
+    }
+
+    &:focus {
+      box-shadow: 0 0 0 2px rgba(194, 120, 20, 0.15);
+      z-index: 1;
+    }
+
+    &:active {
+      background-color: var(--color-secondary-200);
+    }
+  }
+
+  > .p-button:not(:last-child),
+  > .p-button-group:not(:last-child) > .p-button {
+    border-right: none;
+  }
+
+  > .p-button:first-child,
+  > .p-button-group:first-child > .p-button {
+    border-top-left-radius: 0.375rem;
+    border-bottom-left-radius: 0.375rem;
+  }
+
+  > .p-button:last-child,
+  > .p-button-group:last-child > .p-button {
+    border-top-right-radius: 0.375rem;
+    border-bottom-right-radius: 0.375rem;
+  }
+
+  > .p-button:not(:first-child):not(:last-child) {
+    border-radius: 0;
+  }
+
+  &.p-buttongroup-sm .p-button {
+    padding: 0.375rem 0.625rem;
+    font-size: 0.8125rem;
+
+    .p-button-icon {
+      font-size: 0.75rem;
+    }
+  }
+}
+
+.dark .p-buttongroup {
+  .p-button {
+    background-color: var(--color-dark-primary-800);
+    border: 1px solid var(--color-dark-primary-500);
+    color: var(--color-dark-secondary-200);
+
+    &:hover {
+      background-color: var(--color-dark-primary-700);
+      border-color: var(--color-dark-primary-400);
+      color: var(--color-dark-secondary-50);
+    }
+
+    &:focus {
+      box-shadow: 0 0 0 2px rgba(234, 170, 50, 0.2);
+      z-index: 1;
+    }
+
+    &:active {
+      background-color: var(--color-dark-primary-600);
+    }
+  }
+
+  > .p-button:not(:last-child),
+  > .p-button-group:not(:last-child) > .p-button {
+    border-right: none;
   }
 }

@@ -8,28 +8,41 @@ import { Chip } from 'primeng/chip';
 import { DatePicker } from 'primeng/datepicker';
 import { InputText } from 'primeng/inputtext';
 import { Ripple } from 'primeng/ripple';
-import { Select } from 'primeng/select';
 import { TableModule } from 'primeng/table';
 
+import { IsNewIncomePipe } from '@features/incomes/pipes';
+import { IIncomesFilter } from '@features/incomes/store/incomes.state';
 import { IIncome } from '@features/incomes/types/incomes.interfaces';
-import { CursorDirection, IPageInfo } from '@shared/types';
 import { v7 as uuid } from 'uuid';
 
 import { Currency } from '@core/types';
+import { ButtonBarDatepickerComponent } from '@shared/components/datepicker/button-bar-datepicker';
+import { CursorPaginationComponent } from '@shared/components/pagination';
+import { IPageInfo, IPageNavigationEvent, IPageSizeChangeEvent } from '@shared/types';
 
-export interface PageNavigationEvent {
-  direction: CursorDirection;
-  cursor: string | null;
-  pageSize: number;
-}
-
-export interface PageSizeChangeEvent {
-  rows: number;
+export interface IFilterAppliedEvent {
+  filter: Partial<IIncomesFilter>;
 }
 
 @Component({
   selector: 'app-incomes-table',
-  imports: [CurrencyPipe, DatePipe, FormsModule, AutoComplete, Button, ButtonDirective, ButtonIcon, Chip, DatePicker, InputText, Ripple, Select, TableModule],
+  imports: [
+    CurrencyPipe,
+    DatePipe,
+    FormsModule,
+    AutoComplete,
+    Button,
+    ButtonDirective,
+    ButtonIcon,
+    Chip,
+    DatePicker,
+    InputText,
+    IsNewIncomePipe,
+    Ripple,
+    TableModule,
+    ButtonBarDatepickerComponent,
+    CursorPaginationComponent,
+  ],
   templateUrl: './incomes-table.component.html',
   styles: `
     :host {
@@ -47,16 +60,13 @@ export class IncomesTableComponent {
   readonly currentPage = input<number>(1);
   readonly pageInfo = input.required<IPageInfo>();
 
-  readonly navigatePage = output<PageNavigationEvent>();
-  readonly pageSizeChange = output<PageSizeChangeEvent>();
+  readonly navigatePage = output<IPageNavigationEvent>();
+  readonly pageSizeChange = output<IPageSizeChangeEvent>();
+  readonly filtersApplied = output<IFilterAppliedEvent>();
+  readonly filtersCleared = output<void>();
 
   readonly newIncomeId = signal<string | null>(null);
-
-  readonly rowsPerPageOptions = [
-    { label: '10', value: 10 },
-    { label: '25', value: 25 },
-    { label: '50', value: 50 },
-  ];
+  readonly datesFilter = signal<Date[] | null>(null);
 
   filteredCategories: string[] = [];
 
@@ -67,18 +77,12 @@ export class IncomesTableComponent {
     return [...new Set(allCategories)].sort();
   });
 
-  readonly totalPages = computed(() => Math.ceil(this.totalRecords() / this.rows()));
+  readonly #isNewIncome = (incomeId: string): boolean => this.newIncomeId() === incomeId;
 
-  readonly paginationInfo = computed(() => {
-    const total = this.totalRecords();
-    const page = this.currentPage();
-    const size = this.rows();
-    const start = (page - 1) * size + 1;
-    const end = Math.min(page * size, total);
-    return `${start}-${end} of ${total}`;
-  });
-
-  readonly isNewIncome = (incomeId: string): boolean => this.newIncomeId() === incomeId;
+  onDatesFilterChange(dates: Date[] | null): void {
+    console.log('[IncomesTable] Dates changed:', dates);
+    this.datesFilter.set(dates);
+  }
 
   filterCategories(event: { query: string }): void {
     const query = event.query.toLowerCase();
@@ -112,33 +116,13 @@ export class IncomesTableComponent {
   onRowEditSave(income: IIncome): void {
     this.#clonedIncomes.delete(income.id);
 
-    if (this.isNewIncome(income.id)) {
+    if (this.#isNewIncome(income.id)) {
       this.newIncomeId.set(null);
     }
   }
 
-  onPreviousPage(): void {
-    this.navigatePage.emit({
-      direction: 'previous',
-      cursor: this.pageInfo().startCursor,
-      pageSize: this.rows(),
-    });
-  }
-
-  onNextPage(): void {
-    this.navigatePage.emit({
-      direction: 'next',
-      cursor: this.pageInfo().endCursor,
-      pageSize: this.rows(),
-    });
-  }
-
-  onPageSizeChange(rows: number): void {
-    this.pageSizeChange.emit({ rows });
-  }
-
   onRowEditCancel(income: IIncome, index: number): void {
-    if (this.isNewIncome(income.id)) {
+    if (this.#isNewIncome(income.id)) {
       this.data().splice(index, 1);
       this.newIncomeId.set(null);
     } else {
@@ -154,12 +138,30 @@ export class IncomesTableComponent {
   onRowDelete(income: IIncome, index: number): void {
     this.data().splice(index, 1);
 
-    if (this.isNewIncome(income.id)) {
+    if (this.#isNewIncome(income.id)) {
       this.newIncomeId.set(null);
     }
   }
 
   onRowArchive(_income: IIncome, index: number): void {
     this.data().splice(index, 1);
+  }
+
+  filter(): void {
+    const dates = this.datesFilter();
+    const filterPayload = {
+      filter: {
+        dateRange: {
+          from: dates?.[0] ?? null,
+          to: dates?.[1] ?? null,
+        },
+      },
+    };
+
+    this.filtersApplied.emit(filterPayload);
+  }
+
+  clearFilters(): void {
+    this.filtersCleared.emit();
   }
 }

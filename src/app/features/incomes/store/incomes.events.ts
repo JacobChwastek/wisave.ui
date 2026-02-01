@@ -4,6 +4,8 @@ import { eventGroup } from '@ngrx/signals/events';
 
 import { CursorDirection, IPageInfo } from '@shared/types';
 
+import { IIncomesFilter, IIncomesSortOrder } from './incomes.state';
+
 // UI/Component events - commands from user interactions
 export const incomesPageEvents = eventGroup({
   source: 'Incomes Page',
@@ -14,7 +16,9 @@ export const incomesPageEvents = eventGroup({
     add: type<{ income: Omit<IIncome, 'id'> }>(),
     update: type<{ id: string; changes: Partial<IIncome> }>(),
     remove: type<{ id: string }>(),
-    filterChanged: type<{ query?: string; order?: 'asc' | 'desc' }>(),
+    filterApplied: type<{ filter: Partial<IIncomesFilter> }>(),
+    filtersCleared: type<void>(),
+    sortChanged: type<{ sort: IIncomesSortOrder }>(),
   },
 });
 
@@ -30,5 +34,7 @@ export const incomesApiEvents = eventGroup({
     updatedFailure: type<{ id: string; error: string }>(),
     removedSuccess: type<{ id: string }>(),
     removedFailure: type<{ id: string; error: string }>(),
+    categoriesLoadedSuccess: type<{ categories: string[] }>(),
+    categoriesLoadedFailure: type<{ error: string }>(),
   },
 });

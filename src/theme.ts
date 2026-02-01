@@ -514,10 +514,10 @@ const WiSaveTheme = definePreset(Aura, {
             },
           },
           paginatorTop: {
-            borderColor: 'var(--color-divider)',
+            borderColor: 'transparent',
           },
           paginatorBottom: {
-            borderColor: 'var(--color-divider)',
+            borderColor: 'transparent',
           },
         },
         dark: {
@@ -631,10 +631,10 @@ const WiSaveTheme = definePreset(Aura, {
             },
           },
           paginatorTop: {
-            borderColor: 'var(--color-dark-divider)',
+            borderColor: 'transparent',
           },
           paginatorBottom: {
-            borderColor: 'var(--color-dark-divider)',
+            borderColor: 'transparent',
           },
         },
       },
@@ -657,6 +657,20 @@ const WiSaveTheme = definePreset(Aura, {
           content: {
             background: 'var(--color-dark-primary-800)',
             color: 'var(--color-dark-secondary-300)',
+          },
+        },
+      },
+    },
+    buttongroup: {
+      colorScheme: {
+        light: {
+          root: {
+            borderRadius: '0.5rem',
+          },
+        },
+        dark: {
+          root: {
+            borderRadius: '0.5rem',
           },
         },
       },

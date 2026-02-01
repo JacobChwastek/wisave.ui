@@ -2,6 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 
 import { GraphQLService } from '@graphql/services/graphql.service';
+
 import { CursorDirection } from '@shared/types';
 
 import {
@@ -17,6 +18,7 @@ import {
   type GetTotalAmountQuery,
   type GetTotalAmountQueryVariables,
 } from '../graphql/incomes.queries.generated';
+import { IIncomesFilter, IIncomesSortOrder } from '../store/incomes.state';
 import type { IIncome } from '../types/incomes.interfaces';
 import { IncomesMapperService } from './incomes-mapper.service';
 
@@ -37,6 +39,11 @@ export interface ICursorPaginationParams {
   pageSize: number;
 }
 
+export interface IIncomesQueryParams extends ICursorPaginationParams {
+  filter?: IIncomesFilter;
+  sort?: IIncomesSortOrder;
+}
+
 @Injectable({ providedIn: 'root' })
 export class IncomesGraphQLService {
   #graphql = inject(GraphQLService);
@@ -51,8 +58,8 @@ export class IncomesGraphQLService {
     );
   }
 
-  getAllWithPagination(params: ICursorPaginationParams): Observable<IIncomesQueryResult> {
-    const variables = this.#buildPaginationVariables(params);
+  getAllWithPagination(params: IIncomesQueryParams): Observable<IIncomesQueryResult> {
+    const variables = this.#buildQueryVariables(params);
 
     return this.#graphql.query<GetIncomesQuery, GetIncomesQueryVariables>(GetIncomesDocument, variables).pipe(
       map((data) => {
@@ -71,18 +78,72 @@ export class IncomesGraphQLService {
     );
   }
 
-  #buildPaginationVariables(params: ICursorPaginationParams): GetIncomesQueryVariables {
-    const { direction, cursor, pageSize } = params;
+  #buildQueryVariables(params: IIncomesQueryParams): GetIncomesQueryVariables {
+    const { direction, cursor, pageSize, filter, sort } = params;
 
+    const variables: GetIncomesQueryVariables = {};
+
+    // Pagination
     if (direction === 'previous' && cursor) {
-      return { last: pageSize, before: cursor };
+      variables.last = pageSize;
+      variables.before = cursor;
+    } else if (direction === 'next' && cursor) {
+      variables.first = pageSize;
+      variables.after = cursor;
+    } else {
+      variables.first = pageSize;
     }
 
-    if (direction === 'next' && cursor) {
-      return { first: pageSize, after: cursor };
+    // Filter
+    if (filter) {
+      variables.where = this.#buildFilterInput(filter);
     }
 
-    return { first: pageSize };
+    // Sort
+    if (sort) {
+      variables.order = [{ [sort.field]: sort.direction.toUpperCase() as 'ASC' | 'DESC' }];
+    }
+
+    return variables;
+  }
+
+  #buildFilterInput(filter: IIncomesFilter): GetIncomesQueryVariables['where'] {
+    const where: NonNullable<GetIncomesQueryVariables['where']> = {};
+    const conditions: NonNullable<GetIncomesQueryVariables['where']>[] = [];
+
+    // Date range filter
+    if (filter.dateRange.from || filter.dateRange.to) {
+      const dateFilter: { gte?: string; lte?: string } = {};
+      if (filter.dateRange.from) {
+        dateFilter.gte = filter.dateRange.from.toISOString();
+      }
+      if (filter.dateRange.to) {
+        dateFilter.lte = filter.dateRange.to.toISOString();
+      }
+      conditions.push({ date: dateFilter });
+    }
+
+    // Search query filter (searches in description)
+    if (filter.searchQuery?.trim()) {
+      conditions.push({ description: { contains: filter.searchQuery.trim() } });
+    }
+
+    // Categories filter
+    if (filter.categories.length > 0) {
+      conditions.push({ categories: { some: { in: filter.categories } } });
+    }
+
+    // Recurring filter
+    if (filter.recurring !== null) {
+      conditions.push({ recurring: { eq: filter.recurring } });
+    }
+
+    // Combine conditions with AND
+    if (conditions.length > 0) {
+      where.and = conditions;
+    }
+
+    return Object.keys(where).length > 0 ? where : undefined;
   }
 
   getById(id: string): Observable<IIncome | null> {
