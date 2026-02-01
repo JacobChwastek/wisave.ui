@@ -1,25 +1,35 @@
-import { CurrencyPipe, DatePipe, NgClass } from '@angular/common';
-import { Component, computed, input, signal } from '@angular/core';
+import { CurrencyPipe, DatePipe } from '@angular/common';
+import { ChangeDetectionStrategy, Component, computed, input, output, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { AutoComplete } from 'primeng/autocomplete';
 import { Button, ButtonDirective, ButtonIcon } from 'primeng/button';
 import { Chip } from 'primeng/chip';
 import { DatePicker } from 'primeng/datepicker';
-import { IconField } from 'primeng/iconfield';
-import { InputIcon } from 'primeng/inputicon';
 import { InputText } from 'primeng/inputtext';
 import { Ripple } from 'primeng/ripple';
-import { Table, TableModule } from 'primeng/table';
+import { Select } from 'primeng/select';
+import { TableModule } from 'primeng/table';
 
 import { IIncome } from '@features/incomes/types/incomes.interfaces';
+import { CursorDirection, IPageInfo } from '@shared/types';
 import { v7 as uuid } from 'uuid';
 
 import { Currency } from '@core/types';
 
+export interface PageNavigationEvent {
+  direction: CursorDirection;
+  cursor: string | null;
+  pageSize: number;
+}
+
+export interface PageSizeChangeEvent {
+  rows: number;
+}
+
 @Component({
   selector: 'app-incomes-table',
-  imports: [CurrencyPipe, DatePipe, FormsModule, NgClass, AutoComplete, Button, ButtonDirective, ButtonIcon, Chip, DatePicker, IconField, InputIcon, InputText, Ripple, TableModule],
+  imports: [CurrencyPipe, DatePipe, FormsModule, AutoComplete, Button, ButtonDirective, ButtonIcon, Chip, DatePicker, InputText, Ripple, Select, TableModule],
   templateUrl: './incomes-table.component.html',
   styles: `
     :host {
@@ -27,14 +37,27 @@ import { Currency } from '@core/types';
       flex: 1;
     }
   `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IncomesTableComponent {
   readonly isLoading = input.required<boolean>();
   readonly data = input.required<IIncome[]>();
+  readonly totalRecords = input<number>(0);
+  readonly rows = input<number>(10);
+  readonly currentPage = input<number>(1);
+  readonly pageInfo = input.required<IPageInfo>();
+
+  readonly navigatePage = output<PageNavigationEvent>();
+  readonly pageSizeChange = output<PageSizeChangeEvent>();
 
   readonly newIncomeId = signal<string | null>(null);
 
-  searchValue: string | undefined;
+  readonly rowsPerPageOptions = [
+    { label: '10', value: 10 },
+    { label: '25', value: 25 },
+    { label: '50', value: 50 },
+  ];
+
   filteredCategories: string[] = [];
 
   readonly #clonedIncomes = new Map<string, IIncome>();
@@ -44,12 +67,18 @@ export class IncomesTableComponent {
     return [...new Set(allCategories)].sort();
   });
 
-  readonly isNewIncome = (incomeId: string): boolean => this.newIncomeId() === incomeId;
+  readonly totalPages = computed(() => Math.ceil(this.totalRecords() / this.rows()));
 
-  clear(table: Table): void {
-    table.clear();
-    this.searchValue = '';
-  }
+  readonly paginationInfo = computed(() => {
+    const total = this.totalRecords();
+    const page = this.currentPage();
+    const size = this.rows();
+    const start = (page - 1) * size + 1;
+    const end = Math.min(page * size, total);
+    return `${start}-${end} of ${total}`;
+  });
+
+  readonly isNewIncome = (incomeId: string): boolean => this.newIncomeId() === incomeId;
 
   filterCategories(event: { query: string }): void {
     const query = event.query.toLowerCase();
@@ -86,6 +115,26 @@ export class IncomesTableComponent {
     if (this.isNewIncome(income.id)) {
       this.newIncomeId.set(null);
     }
+  }
+
+  onPreviousPage(): void {
+    this.navigatePage.emit({
+      direction: 'previous',
+      cursor: this.pageInfo().startCursor,
+      pageSize: this.rows(),
+    });
+  }
+
+  onNextPage(): void {
+    this.navigatePage.emit({
+      direction: 'next',
+      cursor: this.pageInfo().endCursor,
+      pageSize: this.rows(),
+    });
+  }
+
+  onPageSizeChange(rows: number): void {
+    this.pageSizeChange.emit({ rows });
   }
 
   onRowEditCancel(income: IIncome, index: number): void {

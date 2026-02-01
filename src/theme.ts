@@ -11,7 +11,7 @@ const WiSaveTheme = definePreset(Aura, {
               background: 'var(--color-secondary-100)',
               hoverBackground: 'var(--color-secondary-200)',
               activeBackground: 'var(--color-secondary-300)',
-              borderColor: 'var(--color-secondary-300)',
+              borderColor: 'var(--color-divider)',
               hoverBorderColor: 'var(--color-secondary-400)',
               color: 'var(--color-secondary-700)',
               hoverColor: 'var(--color-secondary-800)',
@@ -32,12 +32,12 @@ const WiSaveTheme = definePreset(Aura, {
             secondary: {
               hoverBackground: 'var(--color-secondary-100)',
               activeBackground: 'var(--color-secondary-200)',
-              borderColor: 'var(--color-secondary-400)',
+              borderColor: 'var(--color-divider)',
               color: 'var(--color-secondary-700)',
             },
             success: {
-              hoverBackground: 'rgba(217, 119, 6, 0.1)',
-              activeBackground: 'rgba(217, 119, 6, 0.2)',
+              hoverBackground: 'rgba(194, 120, 20, 0.1)',
+              activeBackground: 'rgba(194, 120, 20, 0.2)',
               borderColor: 'var(--color-accent-600)',
               color: 'var(--color-accent-700)',
             },
@@ -49,8 +49,8 @@ const WiSaveTheme = definePreset(Aura, {
               color: 'var(--color-secondary-600)',
             },
             success: {
-              hoverBackground: 'rgba(217, 119, 6, 0.1)',
-              activeBackground: 'rgba(217, 119, 6, 0.2)',
+              hoverBackground: 'rgba(194, 120, 20, 0.1)',
+              activeBackground: 'rgba(194, 120, 20, 0.2)',
               color: 'var(--color-accent-700)',
             },
           },
@@ -86,8 +86,8 @@ const WiSaveTheme = definePreset(Aura, {
               color: 'var(--color-dark-secondary-100)',
             },
             success: {
-              hoverBackground: 'rgba(251, 191, 36, 0.12)',
-              activeBackground: 'rgba(251, 191, 36, 0.2)',
+              hoverBackground: 'rgba(234, 170, 50, 0.12)',
+              activeBackground: 'rgba(234, 170, 50, 0.2)',
               borderColor: 'var(--color-accent-500)',
               color: 'var(--color-accent-400)',
             },
@@ -99,8 +99,8 @@ const WiSaveTheme = definePreset(Aura, {
               color: 'var(--color-dark-secondary-200)',
             },
             success: {
-              hoverBackground: 'rgba(251, 191, 36, 0.15)',
-              activeBackground: 'rgba(251, 191, 36, 0.25)',
+              hoverBackground: 'rgba(234, 170, 50, 0.15)',
+              activeBackground: 'rgba(234, 170, 50, 0.25)',
               color: 'var(--color-accent-400)',
             },
           },
@@ -116,7 +116,7 @@ const WiSaveTheme = definePreset(Aura, {
             filledBackground: 'var(--color-secondary-50)',
             filledHoverBackground: 'var(--color-secondary-100)',
             filledFocusBackground: 'var(--color-secondary-50)',
-            borderColor: 'var(--color-secondary-300)',
+            borderColor: 'var(--color-divider)',
             hoverBorderColor: 'var(--color-secondary-400)',
             focusBorderColor: 'var(--color-accent-500)',
             invalidBorderColor: '#ef4444',
@@ -152,7 +152,7 @@ const WiSaveTheme = definePreset(Aura, {
         light: {
           root: {
             background: 'var(--color-secondary-50)',
-            borderColor: 'var(--color-secondary-300)',
+            borderColor: 'var(--color-divider)',
             hoverBorderColor: 'var(--color-secondary-400)',
             focusBorderColor: 'var(--color-accent-500)',
             color: 'var(--color-secondary-900)',
@@ -177,7 +177,7 @@ const WiSaveTheme = definePreset(Aura, {
           root: {
             background: 'var(--color-secondary-50)',
             disabledBackground: 'var(--color-secondary-100)',
-            borderColor: 'var(--color-secondary-300)',
+            borderColor: 'var(--color-divider)',
             hoverBorderColor: 'var(--color-secondary-400)',
             focusBorderColor: 'var(--color-accent-500)',
             invalidBorderColor: '#ef4444',
@@ -191,7 +191,7 @@ const WiSaveTheme = definePreset(Aura, {
           },
           overlay: {
             background: 'var(--color-secondary-50)',
-            borderColor: 'var(--color-secondary-200)',
+            borderColor: 'var(--color-divider)',
             color: 'var(--color-secondary-800)',
             shadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1)',
           },
@@ -230,7 +230,7 @@ const WiSaveTheme = definePreset(Aura, {
           },
           overlay: {
             background: 'var(--color-dark-primary-800)',
-            borderColor: 'var(--color-dark-primary-600)',
+            borderColor: 'var(--color-dark-divider-strong)',
             color: 'var(--color-dark-secondary-100)',
             shadow: '0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -2px rgba(0, 0, 0, 0.3)',
           },
@@ -258,12 +258,12 @@ const WiSaveTheme = definePreset(Aura, {
         light: {
           panel: {
             background: 'var(--color-secondary-50)',
-            borderColor: 'var(--color-secondary-200)',
+            borderColor: 'var(--color-divider)',
             color: 'var(--color-secondary-800)',
             shadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1)',
           },
           header: {
-            borderColor: 'var(--color-secondary-200)',
+            borderColor: 'var(--color-divider)',
             color: 'var(--color-secondary-900)',
           },
           dropdown: {
@@ -280,21 +280,21 @@ const WiSaveTheme = definePreset(Aura, {
             rangeSelectedColor: 'var(--color-secondary-50)',
           },
           buttonbar: {
-            borderColor: 'var(--color-secondary-200)',
+            borderColor: 'var(--color-divider)',
           },
           timePicker: {
-            borderColor: 'var(--color-secondary-200)',
+            borderColor: 'var(--color-divider)',
           },
         },
         dark: {
           panel: {
             background: 'var(--color-dark-primary-800)',
-            borderColor: 'var(--color-dark-primary-600)',
+            borderColor: 'var(--color-dark-divider-strong)',
             color: 'var(--color-dark-secondary-100)',
             shadow: '0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -4px rgba(0, 0, 0, 0.3)',
           },
           header: {
-            borderColor: 'var(--color-dark-primary-600)',
+            borderColor: 'var(--color-dark-divider-strong)',
             color: 'var(--color-dark-secondary-50)',
           },
           dropdown: {
@@ -311,10 +311,10 @@ const WiSaveTheme = definePreset(Aura, {
             rangeSelectedColor: 'var(--color-dark-primary-950)',
           },
           buttonbar: {
-            borderColor: 'var(--color-dark-primary-600)',
+            borderColor: 'var(--color-dark-divider-strong)',
           },
           timePicker: {
-            borderColor: 'var(--color-dark-primary-600)',
+            borderColor: 'var(--color-dark-divider-strong)',
           },
         },
       },
@@ -405,11 +405,11 @@ const WiSaveTheme = definePreset(Aura, {
       colorScheme: {
         light: {
           root: {
-            borderColor: 'var(--color-secondary-200)',
+            borderColor: 'var(--color-divider)',
           },
           header: {
             background: 'var(--color-secondary-50)',
-            borderColor: 'var(--color-secondary-200)',
+            borderColor: 'var(--color-divider)',
             color: 'var(--color-secondary-900)',
             padding: '1rem 1.25rem',
           },
@@ -417,7 +417,7 @@ const WiSaveTheme = definePreset(Aura, {
             background: 'var(--color-secondary-50)',
             hoverBackground: 'var(--color-secondary-100)',
             selectedBackground: 'var(--color-secondary-200)',
-            borderColor: 'var(--color-secondary-200)',
+            borderColor: 'var(--color-divider)',
             color: 'var(--color-secondary-700)',
             hoverColor: 'var(--color-secondary-900)',
             selectedColor: 'var(--color-accent-700)',
@@ -435,7 +435,7 @@ const WiSaveTheme = definePreset(Aura, {
           row: {
             background: 'var(--color-secondary-50)',
             hoverBackground: 'var(--color-secondary-50)',
-            selectedBackground: 'rgba(217, 119, 6, 0.08)',
+            selectedBackground: 'rgba(194, 120, 20, 0.08)',
             color: 'var(--color-secondary-800)',
             hoverColor: 'var(--color-secondary-900)',
             selectedColor: 'var(--color-secondary-900)',
@@ -454,7 +454,7 @@ const WiSaveTheme = definePreset(Aura, {
           },
           footerCell: {
             background: 'var(--color-secondary-50)',
-            borderColor: 'var(--color-secondary-200)',
+            borderColor: 'var(--color-divider)',
             color: 'var(--color-secondary-700)',
             padding: '0.875rem 1rem',
           },
@@ -463,7 +463,7 @@ const WiSaveTheme = definePreset(Aura, {
           },
           footer: {
             background: 'var(--color-secondary-50)',
-            borderColor: 'var(--color-secondary-200)',
+            borderColor: 'var(--color-divider)',
             color: 'var(--color-secondary-700)',
             padding: '1rem 1.25rem',
           },
@@ -488,11 +488,11 @@ const WiSaveTheme = definePreset(Aura, {
             inlineGap: '0.5rem',
             overlaySelect: {
               background: 'var(--color-secondary-50)',
-              borderColor: 'var(--color-secondary-200)',
+              borderColor: 'var(--color-divider)',
               color: 'var(--color-secondary-700)',
             },
             rule: {
-              borderColor: 'var(--color-secondary-200)',
+              borderColor: 'var(--color-divider)',
             },
             constraintList: {
               padding: '0.5rem',
@@ -507,26 +507,26 @@ const WiSaveTheme = definePreset(Aura, {
               selectedColor: 'var(--color-secondary-50)',
               selectedFocusColor: 'var(--color-secondary-50)',
               separator: {
-                borderColor: 'var(--color-secondary-200)',
+                borderColor: 'var(--color-divider)',
               },
               padding: '0.5rem 0.75rem',
               borderRadius: '6px',
             },
           },
           paginatorTop: {
-            borderColor: 'var(--color-secondary-200)',
+            borderColor: 'var(--color-divider)',
           },
           paginatorBottom: {
-            borderColor: 'var(--color-secondary-200)',
+            borderColor: 'var(--color-divider)',
           },
         },
         dark: {
           root: {
-            borderColor: 'var(--color-dark-primary-700)',
+            borderColor: 'var(--color-dark-divider)',
           },
           header: {
             background: 'var(--color-dark-primary-900)',
-            borderColor: 'var(--color-dark-primary-700)',
+            borderColor: 'var(--color-dark-divider)',
             color: 'var(--color-dark-secondary-50)',
             padding: '1rem 1.25rem',
           },
@@ -534,7 +534,7 @@ const WiSaveTheme = definePreset(Aura, {
             background: 'var(--color-dark-primary-850)',
             hoverBackground: 'var(--color-dark-primary-750)',
             selectedBackground: 'var(--color-dark-primary-700)',
-            borderColor: 'var(--color-dark-primary-700)',
+            borderColor: 'var(--color-dark-divider)',
             color: 'var(--color-dark-secondary-100)',
             hoverColor: 'var(--color-dark-secondary-50)',
             selectedColor: 'var(--color-accent-400)',
@@ -565,13 +565,13 @@ const WiSaveTheme = definePreset(Aura, {
             },
           },
           bodyCell: {
-            borderColor: 'var(--color-dark-primary-750)',
+            borderColor: 'var(--color-dark-divider)',
             padding: '0.875rem 1rem',
             selectedBorderColor: 'var(--color-accent-600)',
           },
           footerCell: {
             background: 'var(--color-dark-primary-850)',
-            borderColor: 'var(--color-dark-primary-700)',
+            borderColor: 'var(--color-dark-divider)',
             color: 'var(--color-dark-secondary-100)',
             padding: '0.875rem 1rem',
           },
@@ -580,7 +580,7 @@ const WiSaveTheme = definePreset(Aura, {
           },
           footer: {
             background: 'var(--color-dark-primary-900)',
-            borderColor: 'var(--color-dark-primary-700)',
+            borderColor: 'var(--color-dark-divider)',
             color: 'var(--color-dark-secondary-100)',
             padding: '1rem 1.25rem',
           },
@@ -605,11 +605,11 @@ const WiSaveTheme = definePreset(Aura, {
             inlineGap: '0.5rem',
             overlaySelect: {
               background: 'var(--color-dark-primary-800)',
-              borderColor: 'var(--color-dark-primary-600)',
+              borderColor: 'var(--color-dark-divider-strong)',
               color: 'var(--color-dark-secondary-100)',
             },
             rule: {
-              borderColor: 'var(--color-dark-primary-600)',
+              borderColor: 'var(--color-dark-divider-strong)',
             },
             constraintList: {
               padding: '0.5rem',
@@ -624,17 +624,39 @@ const WiSaveTheme = definePreset(Aura, {
               selectedColor: 'var(--color-dark-primary-950)',
               selectedFocusColor: 'var(--color-dark-primary-950)',
               separator: {
-                borderColor: 'var(--color-dark-primary-600)',
+                borderColor: 'var(--color-dark-divider-strong)',
               },
               padding: '0.5rem 0.75rem',
               borderRadius: '6px',
             },
           },
           paginatorTop: {
-            borderColor: 'var(--color-dark-primary-700)',
+            borderColor: 'var(--color-dark-divider)',
           },
           paginatorBottom: {
-            borderColor: 'var(--color-dark-primary-700)',
+            borderColor: 'var(--color-dark-divider)',
+          },
+        },
+      },
+    },
+    divider: {
+      colorScheme: {
+        light: {
+          root: {
+            borderColor: 'var(--color-divider)',
+          },
+          content: {
+            background: 'var(--color-secondary-50)',
+            color: 'var(--color-secondary-600)',
+          },
+        },
+        dark: {
+          root: {
+            borderColor: 'var(--color-dark-divider)',
+          },
+          content: {
+            background: 'var(--color-dark-primary-800)',
+            color: 'var(--color-dark-secondary-300)',
           },
         },
       },

@@ -9,7 +9,7 @@
 
 .p-button-outlined {
   color: var(--color-secondary-600);
-  border-color: var(--color-secondary-300);
+  border-color: var(--color-secondary-400);
 
   &:hover {
     color: var(--color-secondary-800);
@@ -56,11 +56,11 @@
 }
 
 .p-datatable-header {
-  border-bottom: 1px solid var(--color-secondary-200);
+  border-bottom: 1px solid var(--color-divider-strong);
 }
 
 .p-datatable-thead > tr > th {
-  border-bottom: 2px solid var(--color-secondary-300) !important;
+  border-bottom: 1px solid var(--color-divider) !important;
   border-right: none !important;
   font-size: 0.8125rem;
   text-transform: uppercase;
@@ -68,7 +68,7 @@
 }
 
 .p-datatable-tbody > tr > td {
-  border-bottom: 1px solid var(--color-secondary-100);
+  border-bottom: 1px solid var(--color-divider);
   border-right: none !important;
 }
 
@@ -147,11 +147,11 @@
   }
 
   .p-datatable-header {
-    border-bottom: 1px solid var(--color-dark-primary-700);
+    border-bottom: 1px solid var(--color-dark-divider-strong);
   }
 
   .p-datatable-thead > tr > th {
-    border-bottom: 2px solid var(--color-dark-primary-600) !important;
+    border-bottom: 1px solid var(--color-dark-divider) !important;
     border-right: none !important;
     font-size: 0.8125rem;
     text-transform: uppercase;
@@ -159,7 +159,7 @@
   }
 
   .p-datatable-tbody > tr > td {
-    border-bottom: 1px solid var(--color-dark-primary-750);
+    border-bottom: 1px solid var(--color-dark-divider);
     border-right: none !important;
   }
 
@@ -236,7 +236,7 @@
 
 .p-inputtext {
   background-color: var(--color-secondary-50);
-  border-color: var(--color-secondary-300);
+  border-color: var(--color-secondary-400);
   color: var(--color-secondary-900);
   transition:
     border-color 0.15s ease,
@@ -252,7 +252,7 @@
 
   &:focus {
     border-color: var(--color-accent-500);
-    box-shadow: 0 0 0 2px rgba(217, 119, 6, 0.15);
+    box-shadow: 0 0 0 2px rgba(194, 120, 20, 0.15);
   }
 }
 
@@ -285,7 +285,7 @@
 
     &:focus {
       border-color: var(--color-accent-500);
-      box-shadow: 0 0 0 2px rgba(251, 191, 36, 0.2);
+      box-shadow: 0 0 0 2px rgba(234, 170, 50, 0.2);
     }
   }
 
@@ -303,11 +303,11 @@
 .p-chip {
   background-color: var(--color-secondary-100);
   color: var(--color-secondary-700);
-  border: 1px solid var(--color-secondary-200);
+  border: 1px solid var(--color-divider);
 
   &.p-chip-success {
-    background-color: rgba(217, 119, 6, 0.1);
-    border-color: rgba(217, 119, 6, 0.25);
+    background-color: rgba(194, 120, 20, 0.1);
+    border-color: rgba(194, 120, 20, 0.25);
     color: var(--color-accent-700);
   }
 
@@ -331,8 +331,8 @@
     border: 1px solid var(--color-dark-primary-600);
 
     &.p-chip-success {
-      background-color: rgba(251, 191, 36, 0.15);
-      border-color: rgba(251, 191, 36, 0.3);
+      background-color: rgba(234, 170, 50, 0.15);
+      border-color: rgba(234, 170, 50, 0.3);
       color: var(--color-accent-400);
     }
 
@@ -343,8 +343,8 @@
     }
 
     &.p-chip-warning {
-      background-color: rgba(251, 191, 36, 0.15);
-      border-color: rgba(251, 191, 36, 0.3);
+      background-color: rgba(234, 170, 50, 0.15);
+      border-color: rgba(234, 170, 50, 0.3);
       color: #fde047;
     }
   }
@@ -352,7 +352,7 @@
 
 .p-datepicker {
   background-color: var(--color-secondary-50);
-  border-color: var(--color-secondary-300);
+  border-color: var(--color-secondary-400);
   color: var(--color-secondary-900);
 
   &:hover {
@@ -361,7 +361,7 @@
 
   &:focus {
     border-color: var(--color-accent-500);
-    box-shadow: 0 0 0 2px rgba(217, 119, 6, 0.15);
+    box-shadow: 0 0 0 2px rgba(194, 120, 20, 0.15);
   }
 }
 
@@ -377,18 +377,18 @@
 
     &:focus {
       border-color: var(--color-accent-500);
-      box-shadow: 0 0 0 2px rgba(251, 191, 36, 0.2);
+      box-shadow: 0 0 0 2px rgba(234, 170, 50, 0.2);
     }
   }
 }
 
 .p-paginator {
   background-color: var(--color-secondary-50);
-  border-top: 1px solid var(--color-secondary-200);
+  border-top: 1px solid var(--color-divider);
   padding: 0.5rem 0.75rem;
 
   .p-paginator-element {
-    border: 1px solid var(--color-secondary-300);
+    border: 1px solid var(--color-secondary-400);
     font-size: 0.75rem;
     font-weight: 500;
 
@@ -410,7 +410,7 @@
 
   .p-select {
     background-color: transparent;
-    border: 1px solid var(--color-secondary-300);
+    border: 1px solid var(--color-secondary-400);
     color: var(--color-secondary-700);
     font-size: 0.75rem;
     height: 1.75rem;
@@ -437,7 +437,7 @@
 .dark {
   .p-paginator {
     background-color: var(--color-dark-primary-900);
-    border-top: 1px solid var(--color-dark-primary-700);
+    border-top: 1px solid var(--color-dark-divider);
     padding: 0.5rem 0.75rem;
 
     .p-paginator-element {
@@ -489,7 +489,7 @@
 
 .p-datatable-filter-overlay {
   background-color: var(--color-secondary-50);
-  border: 1px solid var(--color-secondary-200);
+  border: 1px solid var(--color-divider);
   box-shadow:
     0 10px 15px -3px rgba(0, 0, 0, 0.1),
     0 4px 6px -4px rgba(0, 0, 0, 0.1);
@@ -499,7 +499,7 @@
 .dark {
   .p-datatable-filter-overlay {
     background-color: var(--color-dark-primary-800);
-    border: 1px solid var(--color-dark-primary-600);
+    border: 1px solid var(--color-dark-divider);
     box-shadow:
       0 10px 15px -3px rgba(0, 0, 0, 0.3),
       0 4px 6px -4px rgba(0, 0, 0, 0.2);
@@ -532,7 +532,7 @@
       color: var(--color-accent-600);
 
       &:hover {
-        background-color: rgba(217, 119, 6, 0.1);
+        background-color: rgba(194, 120, 20, 0.1);
       }
     }
 
@@ -562,7 +562,7 @@
         color: var(--color-accent-400);
 
         &:hover {
-          background-color: rgba(251, 191, 36, 0.15);
+          background-color: rgba(234, 170, 50, 0.15);
         }
       }
 
@@ -616,5 +616,36 @@
 
   .text-accent-400 {
     color: var(--color-accent-400) !important;
+  }
+}
+
+/* Divider component */
+.p-divider {
+  &.p-divider-horizontal {
+    margin: 1rem 0;
+    padding: 0;
+
+    &::before {
+      border-top: 1px solid var(--color-divider);
+    }
+  }
+
+  &.p-divider-vertical {
+    margin: 0 1rem;
+    padding: 0;
+
+    &::before {
+      border-left: 1px solid var(--color-divider);
+    }
+  }
+}
+
+.dark .p-divider {
+  &.p-divider-horizontal::before {
+    border-top-color: var(--color-dark-divider);
+  }
+
+  &.p-divider-vertical::before {
+    border-left-color: var(--color-dark-divider);
   }
 }

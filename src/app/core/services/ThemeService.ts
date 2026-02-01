@@ -8,15 +8,15 @@ export class ThemeService {
     const theme = localStorage.getItem('theme');
     const isDark = theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches);
     this.isDarkMode.set(isDark);
-    this.applyTheme();
+    this.#applyTheme();
   }
 
-  public toggleTheme() {
+  toggleTheme() {
     this.isDarkMode.update((dark) => !dark);
-    this.applyTheme();
+    this.#applyTheme();
   }
 
-  private applyTheme() {
+  #applyTheme() {
     const html = document.documentElement;
     if (this.isDarkMode()) {
       html.classList.add('dark');

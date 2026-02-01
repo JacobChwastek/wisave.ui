@@ -1,13 +1,16 @@
+import { IIncome } from '@features/incomes/types/incomes.interfaces';
 import { type } from '@ngrx/signals';
 import { eventGroup } from '@ngrx/signals/events';
 
-import { IIncome } from '@features/incomes/types/incomes.interfaces';
+import { CursorDirection, IPageInfo } from '@shared/types';
 
 // UI/Component events - commands from user interactions
 export const incomesPageEvents = eventGroup({
   source: 'Incomes Page',
   events: {
     opened: type<void>(),
+    navigatePage: type<{ direction: CursorDirection; cursor: string | null; pageSize: number }>(),
+    pageSizeChanged: type<{ rows: number }>(),
     add: type<{ income: Omit<IIncome, 'id'> }>(),
     update: type<{ id: string; changes: Partial<IIncome> }>(),
     remove: type<{ id: string }>(),
@@ -19,7 +22,7 @@ export const incomesPageEvents = eventGroup({
 export const incomesApiEvents = eventGroup({
   source: 'Incomes API',
   events: {
-    loadedSuccess: type<{ incomes: IIncome[] }>(),
+    loadedSuccess: type<{ incomes: IIncome[]; totalCount: number; pageInfo: IPageInfo }>(),
     loadedFailure: type<{ error: string }>(),
     addedSuccess: type<{ income: IIncome }>(),
     addedFailure: type<{ error: string }>(),

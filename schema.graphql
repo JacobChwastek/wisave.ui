@@ -1,0 +1,127 @@
+type Query {
+  incomes(
+    first: Int
+    after: String
+    last: Int
+    before: String
+    where: IncomeDocumentFilterInput
+    order: [IncomeDocumentSortInput!]
+  ): IncomesConnection
+
+  incomeById(id: String!): IncomeDocument
+
+  totalAmount(currency: String): Decimal!
+
+  categories: [String!]!
+}
+
+type IncomeDocument {
+  id: String!
+  date: DateTime!
+  description: String!
+  categories: [String!]!
+  amount: Decimal!
+  currency: String!
+  recurring: Boolean!
+  createdAt: DateTime!
+  updatedAt: DateTime
+}
+
+type IncomesConnection {
+  pageInfo: PageInfo!
+  edges: [IncomesEdge!]
+  nodes: [IncomeDocument!]
+  totalCount: Int!
+}
+
+type IncomesEdge {
+  cursor: String!
+  node: IncomeDocument!
+}
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
+
+input IncomeDocumentFilterInput {
+  and: [IncomeDocumentFilterInput!]
+  or: [IncomeDocumentFilterInput!]
+  id: StringOperationFilterInput
+  date: DateTimeOperationFilterInput
+  description: StringOperationFilterInput
+  categories: ListStringOperationFilterInput
+  amount: DecimalOperationFilterInput
+  currency: StringOperationFilterInput
+  recurring: BooleanOperationFilterInput
+  createdAt: DateTimeOperationFilterInput
+  updatedAt: DateTimeOperationFilterInput
+}
+
+input IncomeDocumentSortInput {
+  id: SortEnumType
+  date: SortEnumType
+  description: SortEnumType
+  amount: SortEnumType
+  currency: SortEnumType
+  recurring: SortEnumType
+  createdAt: SortEnumType
+  updatedAt: SortEnumType
+}
+
+input StringOperationFilterInput {
+  eq: String
+  neq: String
+  contains: String
+  ncontains: String
+  startsWith: String
+  nstartsWith: String
+  endsWith: String
+  nendsWith: String
+  in: [String]
+  nin: [String]
+}
+
+input DateTimeOperationFilterInput {
+  eq: DateTime
+  neq: DateTime
+  gt: DateTime
+  gte: DateTime
+  lt: DateTime
+  lte: DateTime
+  in: [DateTime]
+  nin: [DateTime]
+}
+
+input DecimalOperationFilterInput {
+  eq: Decimal
+  neq: Decimal
+  gt: Decimal
+  gte: Decimal
+  lt: Decimal
+  lte: Decimal
+  in: [Decimal]
+  nin: [Decimal]
+}
+
+input BooleanOperationFilterInput {
+  eq: Boolean
+  neq: Boolean
+}
+
+input ListStringOperationFilterInput {
+  all: StringOperationFilterInput
+  any: Boolean
+  none: StringOperationFilterInput
+  some: StringOperationFilterInput
+}
+
+enum SortEnumType {
+  ASC
+  DESC
+}
+
+scalar DateTime
+scalar Decimal

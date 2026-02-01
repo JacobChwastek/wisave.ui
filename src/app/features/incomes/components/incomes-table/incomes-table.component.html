@@ -1,12 +1,9 @@
-<div class="w-full">
+<div class="flex w-full flex-col">
   <p-table
-    #dt1
     [value]="data()"
-    [rows]="10"
-    [rowsPerPageOptions]="[10, 25, 50]"
+    [rows]="rows()"
     [loading]="isLoading()"
-    [paginator]="true"
-    [globalFilterFields]="['description', 'category']"
+    [paginator]="false"
     [scrollable]="true"
     [tableStyle]="{ minWidth: '100%' }"
     [stripedRows]="true"
@@ -15,48 +12,17 @@
     dataKey="id"
     editMode="row">
     <ng-template #caption>
-      <div class="flex items-center gap-2 py-1">
-        <p-iconfield class="max-w-56 flex-1" iconPosition="left">
-          <p-inputicon>
-            <i class="pi pi-search text-xs"></i>
-          </p-inputicon>
-          <input (input)="dt1.filterGlobal($any($event.target).value, 'contains')" class="p-inputtext-sm w-full" pInputText type="text" placeholder="Search incomes..." />
-        </p-iconfield>
-        <div class="ml-auto flex items-center gap-2">
-          <p-button [outlined]="true" (click)="clear(dt1)" class="p-button-xs" label="Clear" icon="pi pi-filter-slash" severity="secondary" size="small" />
-          <p-button (click)="addNewIncome()" class="p-button-xs" label="Add Income" icon="pi pi-plus" severity="success" size="small" />
-        </div>
+      <div class="flex items-center justify-end py-1">
+        <p-button (click)="addNewIncome()" class="p-button-xs" label="Add Income" icon="pi pi-plus" severity="success" size="small" />
       </div>
     </ng-template>
     <ng-template #header>
       <tr class="text-xs">
-        <th style="min-width: 7rem">
-          <div class="flex items-center justify-between">
-            Date
-            <p-columnFilter type="date" field="date" display="menu" />
-          </div>
-        </th>
-        <th style="min-width: 10rem">
-          <div class="flex items-center justify-between">
-            Description
-            <p-columnFilter type="text" field="description" display="menu" />
-          </div>
-        </th>
-        <th style="min-width: 8rem">
-          <div class="flex items-center justify-between">Category</div>
-        </th>
-        <th style="min-width: 7rem">
-          <div class="flex items-center justify-between">
-            Amount
-            <p-columnFilter type="numeric" field="amount.amount" display="menu" />
-          </div>
-        </th>
-        <th style="width: 5rem">
-          <div class="flex items-center justify-between">
-            Recurring
-            <p-columnFilter type="boolean" field="recurring" display="menu" />
-          </div>
-        </th>
+        <th style="min-width: 7rem">Date</th>
+        <th style="min-width: 10rem">Description</th>
+        <th style="min-width: 8rem">Category</th>
+        <th style="min-width: 7rem">Amount</th>
+        <th style="width: 5rem">Recurring</th>
         <th style="width: 6rem"></th>
       </tr>
     </ng-template>
@@ -107,12 +73,11 @@
           }
         </td>
         <td class="text-center">
-          <i
-            [ngClass]="{
-              'pi-check-circle text-accent-500 dark:text-accent-400': income.recurring,
-              'pi-times-circle text-secondary-400 dark:text-dark-secondary-400': !income.recurring,
-            }"
-            class="pi text-sm"></i>
+          @if (income.recurring) {
+            <i class="pi pi-check-circle text-accent-500 dark:text-accent-400 text-base"></i>
+          } @else {
+            <i class="pi pi-minus text-secondary-400 dark:text-dark-secondary-400 text-base"></i>
+          }
         </td>
         <td>
           <div class="flex items-center justify-center gap-1">
@@ -145,12 +110,46 @@
       <tr>
         <td colspan="6">
           <div class="flex flex-col items-center justify-center py-8">
-            <i class="pi pi-inbox mb-3 text-4xl text-secondary-300 dark:text-dark-secondary-400"></i>
+            <i class="pi pi-inbox text-secondary-300 dark:text-dark-secondary-400 mb-3 text-4xl"></i>
             <span class="text-secondary-700 dark:text-dark-secondary-300">No incomes found</span>
-            <span class="mt-1 text-sm text-secondary-500 dark:text-dark-secondary-400">Try adjusting your search or add a new income</span>
+            <span class="text-secondary-500 dark:text-dark-secondary-400 mt-1 text-sm">Try adjusting your search or add a new income</span>
           </div>
         </td>
       </tr>
     </ng-template>
   </p-table>
+
+  <!-- Custom Pagination -->
+  <div class="border-secondary-200 dark:border-dark-secondary-600 flex items-center justify-between border-t px-4 py-3">
+    <div class="flex items-center gap-2">
+      <span class="text-secondary-600 dark:text-dark-secondary-300 text-sm">Rows per page:</span>
+      <p-select [options]="rowsPerPageOptions" [ngModel]="rows()" (ngModelChange)="onPageSizeChange($event)" size="small" />
+    </div>
+
+    <div class="flex items-center gap-3">
+      <span class="text-secondary-600 dark:text-dark-secondary-300 text-sm">{{ paginationInfo() }}</span>
+
+      <div class="flex items-center gap-1">
+        <p-button
+          [disabled]="!pageInfo().hasPreviousPage || isLoading()"
+          [text]="true"
+          (click)="onPreviousPage()"
+          icon="pi pi-chevron-left"
+          severity="secondary"
+          size="small"
+          ariaLabel="Previous page" />
+        <span class="text-secondary-700 dark:text-dark-secondary-200 min-w-[3rem] text-center text-sm font-medium">
+          {{ currentPage() }} / {{ totalPages() }}
+        </span>
+        <p-button
+          [disabled]="!pageInfo().hasNextPage || isLoading()"
+          [text]="true"
+          (click)="onNextPage()"
+          icon="pi pi-chevron-right"
+          severity="secondary"
+          size="small"
+          ariaLabel="Next page" />
+      </div>
+    </div>
+  </div>
 </div>

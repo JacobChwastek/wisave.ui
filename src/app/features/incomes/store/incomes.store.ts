@@ -8,104 +8,6 @@ import { withIncomesEventHandlers } from './incomes.event-handlers';
 import { incomesApiEvents, incomesPageEvents } from './incomes.events';
 import { initialState } from './incomes.state';
 
-interface IncomesFilter {
-  query: string;
-  order: 'asc' | 'desc';
-}
-
-interface IncomesStoreState {
-  isLoading: boolean;
-  filter: IncomesFilter;
-}
-
-const initialState: IncomesStoreState = {
-  isLoading: false,
-  filter: { query: '', order: 'asc' },
-};
-
-const initialIncomes: IIncome[] = [
-  {
-    id: uuid(),
-    date: new Date(2026, 1, 18),
-    category: ['Job'],
-    description: 'Wyplata',
-    amount: { amount: 2000, currency: Currency.PLN },
-    recurring: true,
-  },
-  {
-    id: uuid(),
-    date: new Date(2026, 1, 12),
-    category: ['Job'],
-    description: 'Wyplata',
-    amount: { amount: 10000, currency: Currency.PLN },
-    recurring: true,
-  },
-  {
-    id: uuid(),
-    date: new Date(2026, 1, 9),
-    category: ['Rent', 'Girlfriend'],
-    description: 'Mieszkanie',
-    amount: { amount: 1000, currency: Currency.PLN },
-    recurring: false,
-  },
-  {
-    id: uuid(),
-    date: new Date(2026, 1, 3),
-    category: ['Girlfriend'],
-    description: 'Random',
-    amount: { amount: 45, currency: Currency.PLN },
-    recurring: false,
-  },
-  {
-    id: uuid(),
-    date: new Date(2026, 1, 2),
-    category: ['Family', 'Spotify'],
-    description: 'Spotify',
-    amount: { amount: 19, currency: Currency.PLN },
-    recurring: false,
-  },
-  {
-    id: uuid(),
-    date: new Date(2025, 12, 23),
-    category: ['Other', 'Girlfriend'],
-    description: 'Święta',
-    amount: { amount: 500, currency: Currency.PLN },
-    recurring: false,
-  },
-  {
-    id: uuid(),
-    date: new Date(2025, 12, 17),
-    category: ['Job'],
-    description: 'Wyplata',
-    amount: { amount: 4350, currency: Currency.PLN },
-    recurring: true,
-  },
-  {
-    id: uuid(),
-    date: new Date(2025, 12, 15),
-    category: ['Job'],
-    description: 'Wyplata',
-    amount: { amount: 8, currency: Currency.PLN },
-    recurring: true,
-  },
-  {
-    id: uuid(),
-    date: new Date(2025, 12, 3),
-    category: ['Rent', 'Girlfriend'],
-    description: 'Mieszkanie',
-    amount: { amount: 1250, currency: Currency.PLN },
-    recurring: false,
-  },
-  {
-    id: uuid(),
-    date: new Date(2025, 12, 2),
-    category: ['Family', 'Spotify'],
-    description: 'Spotify',
-    amount: { amount: 19, currency: Currency.PLN },
-    recurring: false,
-  },
-];
-
 export const IncomesStore = signalStore(
   { providedIn: 'root' },
   withDevtools('Incomes', withGlitchTracking()),
@@ -113,6 +15,29 @@ export const IncomesStore = signalStore(
   withEntities<IIncome>(),
   withTrackedReducer(
     on(incomesPageEvents.opened, () => ({ isLoading: true, error: null })),
+    on(incomesPageEvents.navigatePage, ({ payload }, state) => {
+      const currentPage = state.pagination.currentPage;
+      const newPage =
+        payload.direction === 'next' ? currentPage + 1 : payload.direction === 'previous' ? Math.max(1, currentPage - 1) : 1;
+
+      return {
+        isLoading: true,
+        error: null,
+        pagination: {
+          ...state.pagination,
+          currentPage: newPage,
+        },
+      };
+    }),
+    on(incomesPageEvents.pageSizeChanged, ({ payload }, state) => ({
+      isLoading: true,
+      error: null,
+      pagination: {
+        ...state.pagination,
+        rows: payload.rows,
+        currentPage: 1,
+      },
+    })),
     on(incomesPageEvents.add, () => ({ isLoading: true, error: null })),
     on(incomesPageEvents.update, () => ({ isLoading: true, error: null })),
     on(incomesPageEvents.remove, () => ({ isLoading: true, error: null })),
@@ -124,7 +49,18 @@ export const IncomesStore = signalStore(
       },
     })),
 
-    on(incomesApiEvents.loadedSuccess, ({ payload }) => [setAllEntities<IIncome>(payload.incomes), () => ({ isLoading: false, error: null })]),
+    on(incomesApiEvents.loadedSuccess, ({ payload }, state) => [
+      setAllEntities<IIncome>(payload.incomes),
+      () => ({
+        isLoading: false,
+        error: null,
+        pagination: {
+          ...state.pagination,
+          totalRecords: payload.totalCount,
+          pageInfo: payload.pageInfo,
+        },
+      }),
+    ]),
     on(incomesApiEvents.addedSuccess, ({ payload }) => [addEntity<IIncome>(payload.income), () => ({ isLoading: false, error: null })]),
     on(incomesApiEvents.updatedSuccess, ({ payload }) => [updateEntity<IIncome>({ id: payload.income.id, changes: payload.income }), () => ({ isLoading: false, error: null })]),
     on(incomesApiEvents.removedSuccess, ({ payload }) => [removeEntity(payload.id), () => ({ isLoading: false, error: null })]),
