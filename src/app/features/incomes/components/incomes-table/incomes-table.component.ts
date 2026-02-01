@@ -80,7 +80,6 @@ export class IncomesTableComponent {
   readonly #isNewIncome = (incomeId: string): boolean => this.newIncomeId() === incomeId;
 
   onDatesFilterChange(dates: Date[] | null): void {
-    console.log('[IncomesTable] Dates changed:', dates);
     this.datesFilter.set(dates);
   }
 
